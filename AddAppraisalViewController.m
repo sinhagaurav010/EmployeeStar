@@ -9,7 +9,7 @@
 #import "AddAppraisalViewController.h"
 
 @implementation AddAppraisalViewController
-@synthesize arrayAddAppriasal;
+@synthesize arrayAddAppriasal,arrayInsert;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,6 +34,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(clickToAddEmp:)];
+    objDb=[[DataBaseHandler alloc]init];
 }
 
 - (void)viewDidUnload
@@ -96,7 +97,11 @@
 {
     if([alertView isEqual:myAlertView] && buttonIndex==1)
     {
+        self.arrayInsert=[[NSMutableArray alloc]init];
+        NSMutableDictionary *dictAdd=[[NSMutableDictionary alloc]init];
+        [dictAdd setValue:strName forKey:kName];
         
+        [objDb writeArrayFromDatabaseInTable:EMPLOYEESTARTABLE withParameter:self.arrayInsert];
     }
     
 }

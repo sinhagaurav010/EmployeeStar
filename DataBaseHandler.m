@@ -112,6 +112,30 @@ static sqlite3 *database;
             NSLog(@"Name Isert ===%@",Name);
         }
     }
+    else if([Table isEqualToString:EMPLOYEESTARTABLE])
+    {
+        if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) 
+        {
+            
+            if(addStmt == nil) {
+            const char *sql = "insert into Registration Values(?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)";
+            //const char *sql = [[NSString stringWithFormat:@"insert into Registration  Values(?,)"] cString];
+                
+                if(sqlite3_prepare_v2(database, sql, -1, &addStmt, NULL) != SQLITE_OK)
+                    NSAssert1(0, @"Error while creating add statement. '%s'", sqlite3_errmsg(database));
+            }
+            
+            sqlite3_bind_text(addStmt, 1, [[[array objectAtIndex:0] objectForKey:kName] UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(addStmt, 2, [[[array objectAtIndex:0] objectForKey:kEmpName] UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(addStmt, 3, [[[array objectAtIndex:0] objectForKey:kTaskClarity] UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(addStmt, 4, [[[array objectAtIndex:0] objectForKey:kEquipment] UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(addStmt, 5, [[[array objectAtIndex:0] objectForKey:kExploitingSkills] UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(addStmt, 6, [[[array objectAtIndex:0] objectForKey:kExploitingSkills] UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(addStmt, 7, [[[array objectAtIndex:0] objectForKey:kExploitingSkills] UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(addStmt, 8, [[[array objectAtIndex:0] objectForKey:kExploitingSkills] UTF8String], -1, SQLITE_TRANSIENT);
+            NSLog(@"Name Isert ===%@",Name);
+        }
+    }
        if(SQLITE_DONE != sqlite3_step(addStmt))
         NSAssert1(0, @"Error while inserting data. '%s'", sqlite3_errmsg(database));
     else

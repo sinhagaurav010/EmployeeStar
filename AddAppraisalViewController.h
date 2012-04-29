@@ -14,7 +14,10 @@
     UITextField *myTextField;
     UIAlertView *myAlertView;
     IBOutlet UITableView *tblViewAdd;
+    DataBaseHandler *objDb;
+    
 }
 @property(retain,nonatomic)NSMutableArray *arrayAddAppriasal;
+@property(retain,nonatomic)NSMutableArray *arrayInsert;
 -(IBAction)clickToAddEmp:(id)sender;
 @end
