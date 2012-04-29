@@ -19,6 +19,8 @@
 		C993D92D154BEB3F0045D39B /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C993D92B154BEB3F0045D39B /* FirstViewController.xib */; };
 		C9DCCFA2154D3B6400220013 /* DetailAddAppraisalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DCCFA0154D3B6400220013 /* DetailAddAppraisalViewController.m */; };
 		C9DCCFA3154D3B6400220013 /* DetailAddAppraisalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9DCCFA1154D3B6400220013 /* DetailAddAppraisalViewController.xib */; };
+		C9DCCFA8154D44E700220013 /* RatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DCCFA7154D44E700220013 /* RatingView.m */; };
+		C9DCCFAD154D468C00220013 /* RatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9DCCFAC154D468C00220013 /* RatingView.xib */; };
 		C9EB01D6154C64F900DB75D8 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB01D4154C64F900DB75D8 /* RegistrationViewController.m */; };
 		C9EB01D7154C64F900DB75D8 /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9EB01D5154C64F900DB75D8 /* RegistrationViewController.xib */; };
 		C9EB01E3154C687900DB75D8 /* DataBaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB01E2154C687900DB75D8 /* DataBaseHandler.m */; };
@@ -59,6 +61,9 @@
 		C9DCCF9F154D3B6400220013 /* DetailAddAppraisalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailAddAppraisalViewController.h; sourceTree = "<group>"; };
 		C9DCCFA0154D3B6400220013 /* DetailAddAppraisalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailAddAppraisalViewController.m; sourceTree = "<group>"; };
 		C9DCCFA1154D3B6400220013 /* DetailAddAppraisalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailAddAppraisalViewController.xib; sourceTree = "<group>"; };
+		C9DCCFA6154D44E700220013 /* RatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingView.h; sourceTree = "<group>"; };
+		C9DCCFA7154D44E700220013 /* RatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingView.m; sourceTree = "<group>"; };
+		C9DCCFAC154D468C00220013 /* RatingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingView.xib; sourceTree = "<group>"; };
 		C9EB01D3154C64F900DB75D8 /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
 		C9EB01D4154C64F900DB75D8 /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
 		C9EB01D5154C64F900DB75D8 /* RegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
@@ -189,10 +194,21 @@
 			isa = PBXGroup;
 			children = (
 				C9DCCF9F154D3B6400220013 /* DetailAddAppraisalViewController.h */,
+				C9DCCFA9154D44EA00220013 /* RatingView */,
 				C9DCCFA0154D3B6400220013 /* DetailAddAppraisalViewController.m */,
 				C9DCCFA1154D3B6400220013 /* DetailAddAppraisalViewController.xib */,
 			);
 			name = DetailAddApprisalViewController;
+			sourceTree = "<group>";
+		};
+		C9DCCFA9154D44EA00220013 /* RatingView */ = {
+			isa = PBXGroup;
+			children = (
+				C9DCCFA6154D44E700220013 /* RatingView.h */,
+				C9DCCFAC154D468C00220013 /* RatingView.xib */,
+				C9DCCFA7154D44E700220013 /* RatingView.m */,
+			);
+			name = RatingView;
 			sourceTree = "<group>";
 		};
 		C9EB01CF154C62F800DB75D8 /* Images */ = {
@@ -327,6 +343,7 @@
 				C9EB01FA154C7F9A00DB75D8 /* YellowImg.png in Resources */,
 				C9386751154C9C0100709334 /* AddAppraisalViewController.xib in Resources */,
 				C9DCCFA3154D3B6400220013 /* DetailAddAppraisalViewController.xib in Resources */,
+				C9DCCFAD154D468C00220013 /* RatingView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +371,7 @@
 				C9EB0235154C85BD00DB75D8 /* UIView+SCAdditions.m in Sources */,
 				C9386750154C9C0100709334 /* AddAppraisalViewController.m in Sources */,
 				C9DCCFA2154D3B6400220013 /* DetailAddAppraisalViewController.m in Sources */,
+				C9DCCFA8154D44E700220013 /* RatingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
