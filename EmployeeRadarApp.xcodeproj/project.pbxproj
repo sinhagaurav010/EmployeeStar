@@ -17,6 +17,8 @@
 		C993D923154BEAA10045D39B /* EmployeeRadarAppAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C993D922154BEAA10045D39B /* EmployeeRadarAppAppDelegate.m */; };
 		C993D92C154BEB3F0045D39B /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C993D92A154BEB3F0045D39B /* FirstViewController.m */; };
 		C993D92D154BEB3F0045D39B /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C993D92B154BEB3F0045D39B /* FirstViewController.xib */; };
+		C9DCCFA2154D3B6400220013 /* DetailAddAppraisalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9DCCFA0154D3B6400220013 /* DetailAddAppraisalViewController.m */; };
+		C9DCCFA3154D3B6400220013 /* DetailAddAppraisalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9DCCFA1154D3B6400220013 /* DetailAddAppraisalViewController.xib */; };
 		C9EB01D6154C64F900DB75D8 /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB01D4154C64F900DB75D8 /* RegistrationViewController.m */; };
 		C9EB01D7154C64F900DB75D8 /* RegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9EB01D5154C64F900DB75D8 /* RegistrationViewController.xib */; };
 		C9EB01E3154C687900DB75D8 /* DataBaseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C9EB01E2154C687900DB75D8 /* DataBaseHandler.m */; };
@@ -54,6 +56,9 @@
 		C993D929154BEB3F0045D39B /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		C993D92A154BEB3F0045D39B /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		C993D92B154BEB3F0045D39B /* FirstViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
+		C9DCCF9F154D3B6400220013 /* DetailAddAppraisalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailAddAppraisalViewController.h; sourceTree = "<group>"; };
+		C9DCCFA0154D3B6400220013 /* DetailAddAppraisalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailAddAppraisalViewController.m; sourceTree = "<group>"; };
+		C9DCCFA1154D3B6400220013 /* DetailAddAppraisalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailAddAppraisalViewController.xib; sourceTree = "<group>"; };
 		C9EB01D3154C64F900DB75D8 /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
 		C9EB01D4154C64F900DB75D8 /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
 		C9EB01D5154C64F900DB75D8 /* RegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegistrationViewController.xib; sourceTree = "<group>"; };
@@ -115,6 +120,7 @@
 		C993D903154BEAA10045D39B = {
 			isa = PBXGroup;
 			children = (
+				C9DCCFA5154D3B6800220013 /* DetailAddApprisalViewController */,
 				C9386753154C9C0500709334 /* AddApprisalViewController */,
 				C9EB021A154C83AA00DB75D8 /* Picker Source */,
 				C9EB01F6154C72C000DB75D8 /* OptionViewController */,
@@ -177,6 +183,16 @@
 				C993D92B154BEB3F0045D39B /* FirstViewController.xib */,
 			);
 			name = FirstViewController;
+			sourceTree = "<group>";
+		};
+		C9DCCFA5154D3B6800220013 /* DetailAddApprisalViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C9DCCF9F154D3B6400220013 /* DetailAddAppraisalViewController.h */,
+				C9DCCFA0154D3B6400220013 /* DetailAddAppraisalViewController.m */,
+				C9DCCFA1154D3B6400220013 /* DetailAddAppraisalViewController.xib */,
+			);
+			name = DetailAddApprisalViewController;
 			sourceTree = "<group>";
 		};
 		C9EB01CF154C62F800DB75D8 /* Images */ = {
@@ -310,6 +326,7 @@
 				C9EB01F8154C7D9F00DB75D8 /* Default.jpg in Resources */,
 				C9EB01FA154C7F9A00DB75D8 /* YellowImg.png in Resources */,
 				C9386751154C9C0100709334 /* AddAppraisalViewController.xib in Resources */,
+				C9DCCFA3154D3B6400220013 /* DetailAddAppraisalViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +353,7 @@
 				C9EB0234154C85BD00DB75D8 /* UIImage+SCAdditions.m in Sources */,
 				C9EB0235154C85BD00DB75D8 /* UIView+SCAdditions.m in Sources */,
 				C9386750154C9C0100709334 /* AddAppraisalViewController.m in Sources */,
+				C9DCCFA2154D3B6400220013 /* DetailAddAppraisalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

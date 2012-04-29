@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DataBaseHandler.h"
 #import "Constants.h"
+#import "DetailAddAppraisalViewController.h"
 @interface AddAppraisalViewController : UIViewController
 {
     UITextField *myTextField;
@@ -19,5 +20,6 @@
 }
 @property(retain,nonatomic)NSMutableArray *arrayAddAppriasal;
 @property(retain,nonatomic)NSMutableArray *arrayInsert;
+-(void)loadDataFromDatabase;
 -(IBAction)clickToAddEmp:(id)sender;
 @end

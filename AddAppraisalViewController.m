@@ -34,9 +34,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(clickToAddEmp:)];
-    objDb=[[DataBaseHandler alloc]init];
+    [self loadDataFromDatabase];
+    
 }
-
+-(void)loadDataFromDatabase
+{
+    objDb=[[DataBaseHandler alloc]init];
+    [objDb readacessArrayFromDatabase:EMPLOYEESTARTABLE];
+    self.arrayAddAppriasal=[[NSMutableArray alloc] initWithArray:objDb.acessArray];
+    [tblViewAdd reloadData];
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -66,7 +73,7 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringCell];
     }
-	cell.textLabel.text = [[self.arrayAddAppriasal objectAtIndex:indexPath.row] objectForKey:kName];
+	cell.textLabel.text = [[self.arrayAddAppriasal objectAtIndex:indexPath.row] objectForKey:kEmpName];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
 	cell.accessoryType = 1;
 	return cell;
@@ -75,7 +82,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        
+    DetailAddAppraisalViewController *detail=[[DetailAddAppraisalViewController alloc]init];
+    [detail setDictDetails:[arrayAddAppriasal objectAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:detail animated:YES];
 }
 
 #pragma mark-User Defined Functions
@@ -100,8 +109,22 @@
         self.arrayInsert=[[NSMutableArray alloc]init];
         NSMutableDictionary *dictAdd=[[NSMutableDictionary alloc]init];
         [dictAdd setValue:strName forKey:kName];
-        
+        [dictAdd setValue:myTextField.text forKey:kEmpName];
+        [dictAdd setValue:@"0" forKey:kTaskClarity];
+        [dictAdd setValue:@"0" forKey:kEquipment];
+        [dictAdd setValue:@"0" forKey:kExploitingSkills];
+        [dictAdd setValue:@"0" forKey:kRecognition];
+        [dictAdd setValue:@"0" forKey:kSupervision];
+        [dictAdd setValue:@"0" forKey:kDevelopment];
+        [dictAdd setValue:@"0" forKey:kProgression];
+        [dictAdd setValue:@"0" forKey:kOpinions];
+        [dictAdd setValue:@"0" forKey:kPurpose];
+        [dictAdd setValue:@"0" forKey:kWork];
+        [dictAdd setValue:@"0" forKey:kRelationships];
+        [dictAdd setValue:@"0" forKey:kOpportunities];
+        [self.arrayInsert addObject:dictAdd];
         [objDb writeArrayFromDatabaseInTable:EMPLOYEESTARTABLE withParameter:self.arrayInsert];
+        [self loadDataFromDatabase];
     }
     
 }

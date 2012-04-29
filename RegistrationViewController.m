@@ -77,6 +77,7 @@
 {
     if([txtFldDOB.text length]>0 && [txtFldEmail.text length]>0 && [txtFldName.text length]>0 && [txtFldOrganisation.text length]>0 && [txtFldPswd.text length]>0)
     {
+        
         DataBaseHandler *objDb=[[DataBaseHandler alloc]init];
         objDb.Name=txtFldName.text;
         objDb.Organisation=txtFldOrganisation.text;
