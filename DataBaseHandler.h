@@ -9,13 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 #import "Constants.h"
-
+#import "MCDatabase.h"
 @interface DataBaseHandler : NSObject {
     NSString *databaseName;
 	NSString *databasePath; 
     
     
 }
+
+- (BOOL)executeTableQuery:(NSString*)query;
+
 
 @property (retain) NSMutableArray *acessArray;
 @property (retain)NSMutableDictionary *dictionaryDB;
@@ -30,5 +33,6 @@
 -(void) checkAndCreateDatabase;
 -(void) readacessArrayFromDatabase:(NSString *)Table;
 -(void) writeArrayFromDatabaseInTable:(NSString *)Table withParameter:(NSMutableArray *)array;
+-(NSMutableDictionary *)readacessDictFromDatabase:(NSString *)query ;
 
 @end

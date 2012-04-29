@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D87F662154DCC93005C596D /* MCDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D87F660154DCC93005C596D /* MCDatabase.m */; };
+		5DAD7A20154DB3C600C0C8F3 /* RatingCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD7A1F154DB3C600C0C8F3 /* RatingCellView.m */; };
+		5DAD7A24154DB42200C0C8F3 /* RatingCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAD7A23154DB42200C0C8F3 /* RatingCellView.xib */; };
 		C9386750154C9C0100709334 /* AddAppraisalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C938674E154C9C0100709334 /* AddAppraisalViewController.m */; };
 		C9386751154C9C0100709334 /* AddAppraisalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C938674F154C9C0100709334 /* AddAppraisalViewController.xib */; };
 		C993D913154BEAA10045D39B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C993D912154BEAA10045D39B /* UIKit.framework */; };
@@ -42,6 +45,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D87F660154DCC93005C596D /* MCDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDatabase.m; sourceTree = "<group>"; };
+		5D87F661154DCC93005C596D /* MCDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDatabase.h; sourceTree = "<group>"; };
+		5DAD7A1E154DB3C600C0C8F3 /* RatingCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RatingCellView.h; path = /Users/preetdhillon/Documents/Ex/EmployeeStar/RatingCellView.h; sourceTree = "<absolute>"; };
+		5DAD7A1F154DB3C600C0C8F3 /* RatingCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RatingCellView.m; path = /Users/preetdhillon/Documents/Ex/EmployeeStar/RatingCellView.m; sourceTree = "<absolute>"; };
+		5DAD7A23154DB42200C0C8F3 /* RatingCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RatingCellView.xib; path = /Users/preetdhillon/Documents/Ex/EmployeeStar/RatingCellView.xib; sourceTree = "<absolute>"; };
 		C938674D154C9C0100709334 /* AddAppraisalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAppraisalViewController.h; sourceTree = "<group>"; };
 		C938674E154C9C0100709334 /* AddAppraisalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAppraisalViewController.m; sourceTree = "<group>"; };
 		C938674F154C9C0100709334 /* AddAppraisalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAppraisalViewController.xib; sourceTree = "<group>"; };
@@ -112,6 +120,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5DAD7A22154DB3CA00C0C8F3 /* RatingCellView */ = {
+			isa = PBXGroup;
+			children = (
+				5DAD7A23154DB42200C0C8F3 /* RatingCellView.xib */,
+				5DAD7A1E154DB3C600C0C8F3 /* RatingCellView.h */,
+				5DAD7A1F154DB3C600C0C8F3 /* RatingCellView.m */,
+			);
+			name = RatingCellView;
+			sourceTree = "<group>";
+		};
 		C9386753154C9C0500709334 /* AddApprisalViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,9 +212,10 @@
 			isa = PBXGroup;
 			children = (
 				C9DCCF9F154D3B6400220013 /* DetailAddAppraisalViewController.h */,
-				C9DCCFA9154D44EA00220013 /* RatingView */,
 				C9DCCFA0154D3B6400220013 /* DetailAddAppraisalViewController.m */,
 				C9DCCFA1154D3B6400220013 /* DetailAddAppraisalViewController.xib */,
+				C9DCCFA9154D44EA00220013 /* RatingView */,
+				5DAD7A22154DB3CA00C0C8F3 /* RatingCellView */,
 			);
 			name = DetailAddApprisalViewController;
 			sourceTree = "<group>";
@@ -241,6 +260,8 @@
 		C9EB01E6154C689F00DB75D8 /* DatabaseHAndler */ = {
 			isa = PBXGroup;
 			children = (
+				5D87F660154DCC93005C596D /* MCDatabase.m */,
+				5D87F661154DCC93005C596D /* MCDatabase.h */,
 				C9EB01EF154C6F6C00DB75D8 /* Radars.sqlite */,
 				C9EB01E1154C687900DB75D8 /* DataBaseHandler.h */,
 				C9EB01E2154C687900DB75D8 /* DataBaseHandler.m */,
@@ -344,6 +365,7 @@
 				C9386751154C9C0100709334 /* AddAppraisalViewController.xib in Resources */,
 				C9DCCFA3154D3B6400220013 /* DetailAddAppraisalViewController.xib in Resources */,
 				C9DCCFAD154D468C00220013 /* RatingView.xib in Resources */,
+				5DAD7A24154DB42200C0C8F3 /* RatingCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +394,8 @@
 				C9386750154C9C0100709334 /* AddAppraisalViewController.m in Sources */,
 				C9DCCFA2154D3B6400220013 /* DetailAddAppraisalViewController.m in Sources */,
 				C9DCCFA8154D44E700220013 /* RatingView.m in Sources */,
+				5DAD7A20154DB3C600C0C8F3 /* RatingCellView.m in Sources */,
+				5D87F662154DCC93005C596D /* MCDatabase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,7 +418,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tapan Sinha (JQVPP4KWA4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tapan Sinha (JQVPP4KWA4)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -408,7 +433,9 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				PROVISIONING_PROFILE = "177D10BC-4319-4EB6-A7E4-5145E374C118";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "177D10BC-4319-4EB6-A7E4-5145E374C118";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -419,15 +446,18 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tapan Sinha (JQVPP4KWA4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tapan Sinha (JQVPP4KWA4)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "177D10BC-4319-4EB6-A7E4-5145E374C118";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "177D10BC-4319-4EB6-A7E4-5145E374C118";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -437,10 +467,14 @@
 		C993D927154BEAA10045D39B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tapan Sinha (JQVPP4KWA4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tapan Sinha (JQVPP4KWA4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EmployeeRadarApp/EmployeeRadarApp-Prefix.pch";
 				INFOPLIST_FILE = "EmployeeRadarApp/EmployeeRadarApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "177D10BC-4319-4EB6-A7E4-5145E374C118";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "177D10BC-4319-4EB6-A7E4-5145E374C118";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -448,10 +482,14 @@
 		C993D928154BEAA10045D39B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tapan Sinha (JQVPP4KWA4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tapan Sinha (JQVPP4KWA4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EmployeeRadarApp/EmployeeRadarApp-Prefix.pch";
 				INFOPLIST_FILE = "EmployeeRadarApp/EmployeeRadarApp-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "177D10BC-4319-4EB6-A7E4-5145E374C118";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "177D10BC-4319-4EB6-A7E4-5145E374C118";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

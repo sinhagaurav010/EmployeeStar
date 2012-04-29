@@ -196,4 +196,109 @@ static sqlite3 *database;
     
     
 }
+
+-(NSMutableDictionary *)readacessDictFromDatabase:(NSString *)query 
+{
+    [self checkAndCreateDatabase];
+	// Init the acessArray Array
+    
+    NSMutableArray *arrayCrit  = [[NSMutableArray  alloc] initWithObjects:kTaskClarity,kEquipment,kExploitingSkills,kRecognition,kSupervision,kDevelopment,kProgression,kOpinions,kPurpose,kWork,kRelationships,kOpportunities, nil];
+    dictionaryDB = [[NSMutableDictionary alloc] init];
+
+	// Open the database from the users filessytem
+	if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+		// Setup the SQL Statement and compile it for faster access
+		const char *sqlStatement = [[NSString stringWithFormat:query] cString];
+		sqlite3_stmt *compiledStatement;
+		if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+			// Loop through the results and add them to the feeds array
+			while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+				// Read the data from the result row
+                
+                
+                
+                
+                for(int i = 0;i<[arrayCrit  count];i++)
+                {
+                    NSLog(@"!!!!!%@",[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, i)]);
+                [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, i+2)] forKey:[arrayCrit objectAtIndex:i]];
+               
+                }
+                
+                // //NSLog(@"in winary=======%@",WINERY);
+                
+			}
+		}
+		// Release the compiled statement from memory
+		sqlite3_finalize(compiledStatement);
+        sqlite3_close(database);
+	}
+    //    //NSLog(@"in acessArrayacessArrayacessArrayacessArrayacessArray=======%@",acessArray);
+    //	
+    return dictionaryDB;
+}
+- (BOOL)executeTableQuery:(NSString*)query
+{
+    [self checkAndCreateDatabase];
+    
+    sqlite3 *database;
+    
+    
+    //Create the dateformatter object
+    
+    
+    if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+        
+        
+        //const char *sqlStatement = "insert into UserJourney(EndDate) VALUES (?) where JourneyID = ''";
+        //And here I fire the Update statement 
+        NSString *sqlStatement = query; 
+        sqlite3_stmt *compiledStatement;
+        if(sqlite3_prepare_v2(database, [sqlStatement UTF8String] , -1, &compiledStatement, NULL) == SQLITE_OK)    {
+            
+            
+        }
+        if(sqlite3_step(compiledStatement) != SQLITE_DONE ) {
+            NSLog( @"Save Error: %s", sqlite3_errmsg(database) );
+        }
+        else {
+            sqlite3_reset(compiledStatement);
+//            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"UIAlertView" message:@"Record added" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//            [alert show];
+//            [alert release];
+//            alert = nil;
+            
+        }
+        
+        sqlite3_finalize(compiledStatement);
+    }
+    sqlite3_close(database); 
+    return 1;
+//    BOOL success = NO;
+//    MCDatabase *mcDB = [MCDatabase getSharedInstance];  // MCDatabase class has My previous post 
+//    
+//    @try {
+//        char *errorMsg;
+//        int result = sqlite3_exec([mcDB getOpenedDatabase], [query UTF8String], NULL, NULL, &errorMsg);
+//        [query release];
+//        if (result == SQLITE_OK) {
+//            success = YES;
+//        }else {
+//            NSLog(@"eCommerce MCDatabaseConfig-executeQuery: execute failed");
+//            NSLog(@"%@",query);
+//        }
+//    }
+//    @catch (NSException * e) {
+//        NSLog(@"eCommerce MCDatabaseConfig-executeQuery: Caught %@: %@", [e name], [e reason]);
+//    }
+//    @finally {
+//        if ([mcDB isDatabaseOpened]) {
+//            [mcDB closeDatabase];
+//        }
+//    }
+//    
+//    NSLog(@"ak.fjdnsdfj");
+//    return success;
+}
+
 @end

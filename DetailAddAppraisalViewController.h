@@ -10,13 +10,20 @@
 #import "DataBaseHandler.h"
 #import "Constants.h"
 #import "RatingView.h"
-
-@interface DetailAddAppraisalViewController : UIViewController
+#import "RatingCellView.h"
+#import "DataBaseHandler.h"
+@interface DetailAddAppraisalViewController : UIViewController<ratingViewDelegate>
 {
-    
+    NSInteger selectedIndex;
+    DataBaseHandler *objDatabase;   
 }
+-(void)getdata;
+
+@property(retain)DataBaseHandler *objDatabase;
 
 @property(retain)NSMutableArray *arrayRating;
+
+@property(retain)NSString *stringEmp;
 
 @property(retain)RatingView *ratingview;
 @property(retain)IBOutlet UITableView *tableRate;

@@ -9,7 +9,7 @@
 #import "RatingView.h"
 
 @implementation RatingView
-@synthesize tableviewRating,fieldNotes,btSave,delegate,arrayRating,stringRating;
+@synthesize tableviewRating,fieldNotes,btSave,delegate,arrayRating,stringRating,labelRateVal,sliderval,labelTitle;
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -25,10 +25,20 @@
     [delegate  saveTheRating:fieldNotes.text];
 }
 
--(void)setArray
+
+- (IBAction) sliderValueChanged:(UISlider *)sender
 {
-    self.arrayRating = [[NSMutableArray  alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", nil];
-    [tableviewRating  reloadData];
+    
+    self.labelRateVal.text = [NSString stringWithFormat:@"%d",(int)[sender value]];
+}
+-(void)setSlidervalue:(NSString *)string
+{
+    
+    self.sliderval.value = [string  integerValue];
+    self.labelRateVal.text = string;
+    
+//    self.arrayRating = [[NSMutableArray  alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", nil];
+//    [tableviewRating  reloadData];
     
 }
 
@@ -53,6 +63,10 @@
 	return cell;
 }
 
+-(IBAction)cancel:(id)sender
+{
+    [delegate  removeView];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

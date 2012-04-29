@@ -11,6 +11,7 @@
 @protocol ratingViewDelegate <NSObject>
 
 -(void)saveTheRating:(NSString *)notes;
+-(void)removeView;
 
 @end
 @interface RatingView : UIView
@@ -18,8 +19,9 @@
    
 }
 
--(void)setArray;
+-(void)setSlidervalue:(NSString *)string;
 -(IBAction)save:(id)sender;
+-(IBAction)cancel:(id)sender;
 
 @property(retain) NSString *stringRating;
 
@@ -27,6 +29,13 @@
 
 @property(retain) id<ratingViewDelegate>delegate;
 
+@property(retain) IBOutlet UILabel *labelRateVal;
+
+@property(retain) IBOutlet UILabel *labelTitle;
+
+@property(retain) IBOutlet UISlider *sliderval;
+
+- (IBAction) sliderValueChanged:(UISlider *)sender;
 @property(retain) IBOutlet UIButton *btSave;
 @property(retain) IBOutlet UITextField *fieldNotes;
 @property(retain)  IBOutlet UITableView *tableviewRating;
