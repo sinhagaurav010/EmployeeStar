@@ -7,33 +7,31 @@
 //
 
 #import "RegistrationViewController.h"
-#import "SCModalPickerView.h"
 
-@interface SCInputDatePicker : UIDatePicker
-@end
-
-@implementation SCInputDatePicker
-
-- (void)setFrame:(CGRect)frame
-{
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && frame.size.width > 400.0)
-    {
-        frame.size.height = 162.0;
-    }
-    else
-    {
-    
-        frame.size.height = 400.0;
-    }
-    
-    [super setFrame:frame];
-}
-
-@end
+//@interface SCInputdatePicer : UIdatePicer
+//@end
+//
+//@implementation SCInputdatePicer
+//
+//- (void)setFrame:(CGRect)frame
+//{
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && frame.size.width > 400.0)
+//    {
+//        frame.size.height = 162.0;
+//    }
+//    else
+//    {
+//    
+//        frame.size.height = 400.0;
+//    }
+//    
+//    [super setFrame:frame];
+//}
+//
+//@end
 
 @implementation RegistrationViewController
-@synthesize date = _date;
-@synthesize datePicker = _datePicker;
+@synthesize date = _date,datePicer;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -55,11 +53,48 @@
 
 - (void)viewDidLoad
 {
+//    UIdatePicer *datePicer = [self datePicer];
+//    modalPickerView = [[SCModalPickerView alloc] init];
+//    [modalPickerView setPickerView:datePicer];
+//    RegistrationViewController *safeSelf = self;
+//    
+//    [modalPickerView setCompletionHandler:^(SCModalPickerViewResult result){
+//        if (result == SCModalPickerViewResultDone)
+//        {
+//            [safeSelf setDate:[datePicer date]];
+//            [safeSelf updateStatusLabel];
+//        }
+//    }];
+
+    
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateStyle:NSDateFormatterShortStyle];
+//    // [formatter setTimeStyle:NSDateFormatterShortStyle];
+//    [formatter release];
+    
+    datePicer = [[CustomDatePickerView alloc] initWithFrame:CGRectMake(0, 120, 768, 194)];
+    //datePicer.datePicerMode = UIdatePicerModeDate;
+    datePicer.client = self;
+    [self.view addSubview:datePicer];
+    
+    
+    //    [datePicer addTarget:self 
+    //                   action:@selector(DateOfBirth) 
+    //         forControlEvents:UIControlEventValueChanged];
+    datePicer.hidden = YES;
+
+    
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.navigationItem setTitle:REGISTRATIONTABLE];
 }
 
+-(void)pressDone:(NSString *)dateString
+{
+    txtFldDOB.text=dateString;
+    datePicer.hidden = YES;
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -89,6 +124,7 @@
 //        objDb.Username=txtFldEmail.text;
 //       [objDb writeArrayFromDatabaseInTable:LOGINTABLE withParameter:nil];
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Info" message:@"You are successfully registered." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        alert.tag = 299;
         [alert show];
     }
     else
@@ -99,61 +135,54 @@
 }
 -(IBAction)clickToCancel:(id)sender
 {
+    
+//    [modalPickerView removeFromSuperview];
     [self.navigationController popViewControllerAnimated:YES];
     
 }
--(IBAction)clickToDatePicker:(id)sender
+-(IBAction)clickToDatePicker:(id)sender;
 {
     [txtFldDOB resignFirstResponder];
-    UIDatePicker *datePicker = [self datePicker];
-    SCModalPickerView *modalPickerView = [[SCModalPickerView alloc] init];
-    [modalPickerView setPickerView:datePicker];
-    RegistrationViewController *safeSelf = self;
-
-    [modalPickerView setCompletionHandler:^(SCModalPickerViewResult result){
-        if (result == SCModalPickerViewResultDone)
-        {
-            [safeSelf setDate:[datePicker date]];
-            [safeSelf updateStatusLabel];
-        }
-    }];
-    
-    [modalPickerView show];
-   [modalPickerView release];
+    datePicer.hidden  = NO;
+//    [modalPickerView show];
 }
-- (UIDatePicker *)datePicker
-{
-    if (_datePicker == nil)
-    {
-        _datePicker = [[UIDatePicker alloc] init];
-        [_datePicker setDatePickerMode:UIDatePickerModeDate];
-    }
-    
-    return _datePicker;
-}
-- (void)updateStatusLabel
-{
-    NSString *text;
-    if ([self date] == nil)
-    {
-        text = @"No Date Selected";
-    }
-    else
-    {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateStyle:NSDateFormatterShortStyle];
-        // [formatter setTimeStyle:NSDateFormatterShortStyle];
-        text = [NSString stringWithFormat:@"%@", [formatter stringFromDate:[self date]]];
-        [formatter release];
-    }
-    txtFldDOB.text=text;
-    
-}
+//- (UIdatePicer *)datePicer
+//{
+//    if (_datePicer == nil)
+//    {
+//        _datePicer = [[UIdatePicer alloc] init];
+//        [_datePicer setdatePicerMode:UIdatePicerModeDate];
+//    }
+//    
+//    return _datePicer;
+//}
+//- (void)updateStatusLabel
+//{
+//    NSString *text;
+//    if ([self date] == nil)
+//    {
+//        text = @"No Date Selected";
+//    }
+//    else
+//    {
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//        [formatter setDateStyle:NSDateFormatterShortStyle];
+//        // [formatter setTimeStyle:NSDateFormatterShortStyle];
+//        text = [NSString stringWithFormat:@"%@", [formatter stringFromDate:[self date]]];
+//        [formatter release];
+//    }
+//    txtFldDOB.text=text;
+//    
+//    [modalPickerView removeFromSuperview];
+//
+//    
+//}
 
 #pragma mark-UIAlertView delegates
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    if(alertView.tag == 299)
     [self.navigationController popViewControllerAnimated:YES];
 
 }

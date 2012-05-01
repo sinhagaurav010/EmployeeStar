@@ -9,16 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "DataBaseHandler.h"
 #import "Constants.h"
-#import "SCViewController.h"
-@interface RegistrationViewController : UIViewController
+//#import "SCViewController.h"
+//#import "SCModalPickerView.h"
+
+#import "CustomDatePickerView.h"
+
+
+@interface RegistrationViewController : UIViewController<cutomDelegate>
 {
     IBOutlet UITextField *txtFldName;
     IBOutlet UITextField *txtFldOrganisation;
     IBOutlet UITextField *txtFldEmail;
     IBOutlet UITextField *txtFldDOB;
     IBOutlet UITextField *txtFldPswd;
+    
+
+//    SCModalPickerView *modalPickerView ;
 }
-@property (nonatomic, retain, readonly) UIDatePicker *datePicker;
+@property(retain)    CustomDatePickerView *datePicer;
+
+//@property (nonatomic, retain, readonly) UIDatePicker *datePicker;
 @property (nonatomic, retain) NSDate *date;
 - (void)updateStatusLabel;
 -(IBAction)clickToSubmit:(id)sender;
