@@ -18,6 +18,8 @@
     DataBaseHandler *objDb;
     
 }
+@property(retain)NSString *stringAppName;
+
 @property(retain,nonatomic)NSMutableArray *arrayAddAppriasal;
 @property(retain,nonatomic)NSMutableArray *arrayInsert;
 -(void)loadDataFromDatabase;

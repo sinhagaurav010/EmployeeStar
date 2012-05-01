@@ -9,7 +9,7 @@
 #import "AddAppraisalViewController.h"
 
 @implementation AddAppraisalViewController
-@synthesize arrayAddAppriasal,arrayInsert;
+@synthesize arrayAddAppriasal,arrayInsert,stringAppName;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,14 +32,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationItem.title = [NSString  stringWithFormat:@"Employees Added for Appraisal: %@",self.stringAppName];
+    
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(clickToAddEmp:)];
     [self loadDataFromDatabase];
     
 }
+
+
 -(void)loadDataFromDatabase
 {
     objDb=[[DataBaseHandler alloc]init];
+    objDb.appraisalName = self.stringAppName;
     [objDb readacessArrayFromDatabase:EMPLOYEESTARTABLE];
     self.arrayAddAppriasal=[[NSMutableArray alloc] initWithArray:objDb.acessArray];
     [tblViewAdd reloadData];
@@ -54,7 +60,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 #pragma mark-UItableView Delegates and datasource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -84,15 +90,21 @@
 {
     DetailAddAppraisalViewController *detail=[[DetailAddAppraisalViewController alloc]init];
     [detail setDictDetails:[arrayAddAppriasal objectAtIndex:indexPath.row]];
+    detail.stringAppName = self.stringAppName;
+    
     [self.navigationController pushViewController:detail animated:YES];
 }
 
 #pragma mark-User Defined Functions
 -(IBAction)clickToAddEmp:(id)sender
 {
-    myAlertView = [[UIAlertView alloc] initWithTitle:@"Add Employee \n" message:@"\n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+    myAlertView = [[UIAlertView alloc] initWithTitle:@"Add Employee \n" 
+                                             message:@"\n" 
+                                            delegate:self 
+                                   cancelButtonTitle:@"Cancel" 
+                                   otherButtonTitles:@"OK", nil];
     
-    myTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 45.0, 260.0, 25.0)];
+     myTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 45.0, 260.0, 25.0)];
     [myTextField setBackgroundColor:[UIColor whiteColor]];
     [myAlertView addSubview:myTextField];
     if(TARGET_IPHONE_SIMULATOR)
@@ -122,6 +134,8 @@
         [dictAdd setValue:@"0T90TN.A" forKey:kWork];
         [dictAdd setValue:@"0T90TN.A" forKey:kRelationships];
         [dictAdd setValue:@"0T90TN.A" forKey:kOpportunities];
+        [dictAdd setValue:self.stringAppName forKey:KsAppraisalName];
+
         [self.arrayInsert addObject:dictAdd];
         [objDb writeArrayFromDatabaseInTable:EMPLOYEESTARTABLE withParameter:self.arrayInsert];
         [self loadDataFromDatabase];

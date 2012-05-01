@@ -99,7 +99,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 #pragma mark-User Defined Functions
 -(IBAction)clickToAddAppraisal:(id)sender

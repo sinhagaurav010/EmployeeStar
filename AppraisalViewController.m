@@ -42,7 +42,15 @@
     self.addappraisal.hidden = NO;
     viewAbove.hidden = NO;
     
-    [self  getDataFromDB];
+    databasehandler = [[DataBaseHandler  alloc] init];
+    
+    [databasehandler readacessArrayFromDatabase:ktAprtable];
+    
+    self.arrayAppraisals = [[NSMutableArray alloc] init];
+    self.arrayAppraisals = [[NSMutableArray  alloc] initWithArray:databasehandler.acessArray];
+    
+    [databasehandler     release];
+
     
     [tableViewAppraisal  reloadData];
 }
@@ -59,6 +67,7 @@
 - (void)viewDidLoad
 {
     
+    self.navigationItem.title = @"Appraisal Created";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
                                                                                         target:self 
                                                                                           action:@selector(clickToAddEmp:)];
@@ -91,7 +100,6 @@
     [self.view  addSubview:self.addappraisal];
 
     
-    databasehandler = [[DataBaseHandler  alloc] init];
     [self  getDataFromDB];
     
        NSLog(@"%@",databasehandler.acessArray);
@@ -101,11 +109,13 @@
 
 -(void)getDataFromDB
 {
+    databasehandler = [[DataBaseHandler  alloc] init];
+
     [databasehandler readacessArrayFromDatabase:ktAprtable];
     
     self.arrayAppraisals = [[NSMutableArray  alloc] initWithArray:databasehandler.acessArray];
     
-
+    [databasehandler     release];
 }
 
 
@@ -134,12 +144,12 @@
 }
 
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    DetailAddAppraisalViewController *detail=[[DetailAddAppraisalViewController alloc]init];
-//    [detail setDictDetails:[arrayAddAppriasal objectAtIndex:indexPath.row]];
-//    [self.navigationController pushViewController:detail animated:YES];
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    AddAppraisalViewController *controller=[[AddAppraisalViewController alloc]init];
+    controller.stringAppName = [[self.arrayAppraisals objectAtIndex:indexPath.row] objectForKey:kName];
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 - (void)viewDidUnload
 {
@@ -151,7 +161,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

@@ -29,6 +29,8 @@
 #define kRelationships @"Relationships"
 #define kOpportunities @"Opportunities"
 
+#define KsAppraisalName @"AppraisalName"
+
 #define LOGINTABLE @"Login"
 #define REGISTRATIONTABLE  @"Registration"
 #define EMPLOYEESTARTABLE  @"EmployeeStar"

@@ -11,6 +11,7 @@
 #import "ModalController.h"
 #import "Constants.h"
 #import "AddApprasialView.h"
+#import "AddAppraisalViewController.h"
 
 @interface AppraisalViewController : UIViewController<AppraisalViewDelegate>
 {

@@ -12,7 +12,7 @@ static sqlite3_stmt *addStmt = nil;
 static sqlite3 *database;
 
 @implementation DataBaseHandler
-@synthesize Name,Pswd,Organisation,Email,DOB,acessArray,dictionaryDB,Username;
+@synthesize Name,appraisalName,Pswd,Organisation,Email,DOB,acessArray,dictionaryDB,Username;
 -(void)checkAndCreateDatabase
 {
     // Check if the SQL database has already been saved to the users phone, if not then copy it over
@@ -85,12 +85,14 @@ static sqlite3 *database;
     }
         else if([Table isEqualToString:EMPLOYEESTARTABLE])
         {
-            acessArray = [[NSMutableArray alloc] init];
+            self.acessArray = [[NSMutableArray alloc] init];
             
             // Open the database from the users filessytem
             if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
                 // Setup the SQL Statement and compile it for faster access
-                const char *sqlStatement = [[NSString stringWithFormat:@"select * from EmployeeStar where Name = '%@'",strName] cString];
+                NSLog(@"%@",[NSString stringWithFormat:@"select * from EmployeeStar where Name = '%@' AND AppraisalName = '%@'",strName,self.appraisalName] );
+                
+                const char *sqlStatement = [[NSString stringWithFormat:@"select * from EmployeeStar where Name = '%@' AND AppraisalName = '%@'",strName,self.appraisalName] cString];
                 sqlite3_stmt *compiledStatement;
                 if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
                     // Loop through the results and add them to the feeds array
@@ -111,7 +113,7 @@ static sqlite3 *database;
                         [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 11)] forKey:kWork];
                         [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 12)] forKey:kRelationships];
                         [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 13)] forKey:kOpportunities];
-                        [acessArray addObject:dictionaryDB];
+                        [self.acessArray addObject:dictionaryDB];
                         // NSLog(@"in winary=======%@",WINERY);
                         
                         
@@ -188,7 +190,7 @@ static sqlite3 *database;
         {
             
             if(addStmt == nil) {
-                const char *sql = "insert into EmployeeStar Values(?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?)";
+                const char *sql = "insert into EmployeeStar Values(?, ?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?)";
                 //const char *sql = [[NSString stringWithFormat:@"insert into Registration  Values(?,)"] cString];
                 
                 if(sqlite3_prepare_v2(database, sql, -1, &addStmt, NULL) != SQLITE_OK)
@@ -209,6 +211,8 @@ static sqlite3 *database;
             sqlite3_bind_text(addStmt, 12, [[[array objectAtIndex:0] objectForKey:kWork] UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_text(addStmt, 13, [[[array objectAtIndex:0] objectForKey:kRelationships] UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_text(addStmt, 14, [[[array objectAtIndex:0] objectForKey:kOpportunities] UTF8String], -1, SQLITE_TRANSIENT);
+            //AppraisalName
+            sqlite3_bind_text(addStmt, 15, [[[array objectAtIndex:0] objectForKey:KsAppraisalName] UTF8String], -1, SQLITE_TRANSIENT);
         }
     }
     else if([Table isEqualToString:ktAprtable]){

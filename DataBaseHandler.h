@@ -19,6 +19,7 @@
 
 - (BOOL)executeTableQuery:(NSString*)query;
 
+@property(retain)NSString *appraisalName;
 
 @property (retain) NSMutableArray *acessArray;
 @property (retain)NSMutableDictionary *dictionaryDB;

@@ -24,7 +24,7 @@
 @property(retain)NSMutableArray *arrayRating;
 
 @property(retain)NSString *stringEmp;
-
+@property(retain)NSString *stringAppName;
 @property(retain)RatingView *ratingview;
 @property(retain)IBOutlet UITableView *tableRate;
 @property (retain,nonatomic)NSMutableDictionary *dictDetails;

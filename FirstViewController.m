@@ -48,7 +48,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 #pragma mark-UserDefined Function
 -(IBAction)clickToLogin:(id)sender
@@ -57,7 +57,7 @@
     [objBb readacessArrayFromDatabase:REGISTRATIONTABLE];
     for (int i=0; i<[objBb.acessArray count]; i++) {
         if ([[[objBb.acessArray objectAtIndex:i] objectForKey:kEmail] isEqualToString:txtFldUsrName.text] && [[[objBb.acessArray objectAtIndex:i] objectForKey:kPswd] isEqualToString:txtFldPswd.text]) {
-            strName=[[objBb.acessArray objectAtIndex:i] objectForKey:kName];
+            strName=[[objBb.acessArray objectAtIndex:i] objectForKey:kEmail];
             flag=YES;
             break;
         }

@@ -9,7 +9,7 @@
 #import "DetailAddAppraisalViewController.h"
 
 @implementation DetailAddAppraisalViewController
-@synthesize dictDetails,ratingview,tableRate,arrayRating,objDatabase,stringEmp;
+@synthesize dictDetails,ratingview,tableRate,arrayRating,objDatabase,stringEmp,stringAppName;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -49,7 +49,11 @@
 {
     
     
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Info" message:@"Please click on specfic cell to change employee rating and notes!!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Info"
+                                                   message:@"Please click on specfic cell to change employee rating and notes!!" 
+                                                  delegate:self 
+                                         cancelButtonTitle:@"OK" 
+                                         otherButtonTitles:nil];
     [alert show];
     [alert release];
 
@@ -144,7 +148,7 @@
 }
 -(void)getdata
 {
-    self.dictDetails = [[NSMutableDictionary  alloc] initWithDictionary:[objDatabase  readacessDictFromDatabase:[NSString  stringWithFormat:@"SELECT * FROM EmployeeStar WHERE EmpName = '%@'",self.stringEmp]]];
+    self.dictDetails = [[NSMutableDictionary  alloc] initWithDictionary:[objDatabase  readacessDictFromDatabase:[NSString  stringWithFormat:@"SELECT * FROM EmployeeStar WHERE EmpName = '%@' AND AppraisalName = '%@'",self.stringEmp,self.stringAppName]]];
     NSLog(@"------%@",self.dictDetails);
     [self.tableRate  reloadData];
     
@@ -161,7 +165,7 @@
 //    NSLog(@"%d",[objDatabase executeTableQuery:[NSString  stringWithFormat:@"UPDATE EmployeeStar SET TaskClarity = '%@' WHERE EmpName = '%@'",self.ratingview.labelRateVal.text,[self.dictDetails  objectForKey:kEmpName]]]);
     NSLog(@"%@",[NSString  stringWithFormat:@"UPDATE EmployeeStar SET %@ = '%@' WHERE EmpName = '%@'",[arrayRating  objectAtIndex:selectedIndex],[NSString stringWithFormat:@"%@T90T%@",self.ratingview.labelRateVal.text,notes],self.stringEmp]);
     
-    BOOL deleteTable = [objDatabase executeTableQuery:[NSString  stringWithFormat:@"UPDATE EmployeeStar SET %@ = '%@' WHERE EmpName = '%@'",[arrayRating  objectAtIndex:selectedIndex],[NSString stringWithFormat:@"%@T90T%@",self.ratingview.labelRateVal.text,notes],self.stringEmp]];
+    BOOL deleteTable = [objDatabase executeTableQuery:[NSString  stringWithFormat:@"UPDATE EmployeeStar SET %@ = '%@' WHERE EmpName = '%@' AND AppraisalName = '%@'",[arrayRating  objectAtIndex:selectedIndex],[NSString stringWithFormat:@"%@T90T%@",self.ratingview.labelRateVal.text,notes],self.stringEmp,self.stringAppName]];
     NSLog(@"deleteTable=%d",deleteTable);
     self.tableRate.alpha = 1.0;
     self.tableRate.userInteractionEnabled = YES;
@@ -193,7 +197,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

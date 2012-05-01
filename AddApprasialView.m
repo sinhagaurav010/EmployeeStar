@@ -46,7 +46,7 @@
     }
     else
     {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please Enter Name"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Please Enter Name"
                                                     message:nil
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
