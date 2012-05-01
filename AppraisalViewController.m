@@ -1,15 +1,16 @@
 //
-//  OptionViewController.m
+//  AppraisalViewController.m
 //  EmployeeRadarApp
 //
-//  Created by saurav sinha on 29/04/12.
+//  Created by Rohit Dhawan on 01/05/12.
 //  Copyright (c) 2012   . All rights reserved.
 //
 
-#import "OptionViewController.h"
+#import "AppraisalViewController.h"
 
-@implementation OptionViewController
-@synthesize date,addappraisal;
+@implementation AppraisalViewController
+@synthesize arrayAppraisals,addappraisal;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,7 +29,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
--(IBAction)add:(id)sender
+-(void)clickToAddEmp:(id)sender
 {
     NSDate *dateToday = [NSDate date];
     
@@ -40,20 +41,27 @@
     
     self.addappraisal.hidden = NO;
     viewAbove.hidden = NO;
+    
+    [self  getDataFromDB];
+    
+    [tableViewAppraisal  reloadData];
 }
 
 -(void)cancel
 {
     self.addappraisal.hidden = YES;
-
+    
     viewAbove.hidden = YES;
 }
-
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
+                                                                                        target:self 
+                                                                                          action:@selector(clickToAddEmp:)];
     
     viewAbove = [[UIView  alloc] initWithFrame:self.view.bounds];
     [self.view  addSubview:viewAbove];
@@ -81,13 +89,57 @@
     self.addappraisal.hidden = YES;
     
     [self.view  addSubview:self.addappraisal];
+
     
+    databasehandler = [[DataBaseHandler  alloc] init];
+    [self  getDataFromDB];
+    
+       NSLog(@"%@",databasehandler.acessArray);
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.hidesBackButton=YES;
-    [self.navigationItem setTitle:strName];
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Log Out" style:UIBarButtonItemStyleBordered target:self action:@selector(clickToLogout:)];
 }
+
+-(void)getDataFromDB
+{
+    [databasehandler readacessArrayFromDatabase:ktAprtable];
+    
+    self.arrayAppraisals = [[NSMutableArray  alloc] initWithArray:databasehandler.acessArray];
+    
+
+}
+
+
+#pragma mark-UItableView Delegates and datasource
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [self.arrayAppraisals count];
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;              // Default is 1 if not implemented
+{
+	return 1;
+}
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{ 
+    NSString *stringCell = @"cell";
+	UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:stringCell];
+    if(!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:stringCell];
+    }
+	cell.textLabel.text = [[self.arrayAppraisals objectAtIndex:indexPath.row] objectForKey:kName];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+	cell.accessoryType = 1;
+	return cell;
+}
+
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    DetailAddAppraisalViewController *detail=[[DetailAddAppraisalViewController alloc]init];
+//    [detail setDictDetails:[arrayAddAppriasal objectAtIndex:indexPath.row]];
+//    [self.navigationController pushViewController:detail animated:YES];
+//}
 
 - (void)viewDidUnload
 {
@@ -101,18 +153,5 @@
     // Return YES for supported orientations
 	return YES;
 }
-#pragma mark-User Defined Functions
--(IBAction)clickToAddAppraisal:(id)sender
-{
-    AppraisalViewController *controller = [[AppraisalViewController alloc] init];
-    [self.navigationController  pushViewController:controller
-                                          animated:YES];
-    
-//    AddAppraisalViewController *obj=[[AddAppraisalViewController alloc]init];
-//    [self.navigationController pushViewController:obj animated:YES];
-}
--(IBAction)clickToLogout:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:NO];
-}
+
 @end

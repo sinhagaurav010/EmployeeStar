@@ -3,7 +3,7 @@
 //  EmployeeRadarApp
 //
 //  Created by preet dhillon on 29/04/12.
-//  Copyright (c) 2012 sauravsinha007@gmail.com. All rights reserved.
+//  Copyright (c) 2012   . All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

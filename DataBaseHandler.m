@@ -50,7 +50,6 @@ static sqlite3 *database;
 -(void) readacessArrayFromDatabase:(NSString *)Table {
     
     
-    NSLog(@"readacessArrayFromDatabase  DatabasePath===%@",databasePath);
     [self checkAndCreateDatabase];
 	// Init the acessArray Array
     if([Table isEqualToString:REGISTRATIONTABLE])
@@ -123,6 +122,35 @@ static sqlite3 *database;
                 sqlite3_close(database);
             }
         }
+    if([Table isEqualToString:ktAprtable])
+    {
+        acessArray = [[NSMutableArray alloc] init];
+        
+        // Open the database from the users filessytem
+        if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+            // Setup the SQL Statement and compile it for faster access
+            const char *sqlStatement = "select * from APRTable";
+            sqlite3_stmt *compiledStatement;
+            if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+                // Loop through the results and add them to the feeds array
+                while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+                    // Read the data from the result row
+                    dictionaryDB = [[NSMutableDictionary alloc] init];
+                    [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)] forKey:kName];
+                    [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 1)] forKey:@"Date"];
+                    
+                    
+                    [acessArray addObject:dictionaryDB];
+                    // NSLog(@"in winary=======%@",WINERY);
+                    
+                    
+                }
+            }
+            // Release the compiled statement from memory
+            sqlite3_finalize(compiledStatement);
+            sqlite3_close(database);
+        }
+    }
     NSLog(@"in acessArrayacessArrayacessArrayacessArrayacessArray=======%@",acessArray);
 	
     
@@ -182,6 +210,24 @@ static sqlite3 *database;
             sqlite3_bind_text(addStmt, 13, [[[array objectAtIndex:0] objectForKey:kRelationships] UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_text(addStmt, 14, [[[array objectAtIndex:0] objectForKey:kOpportunities] UTF8String], -1, SQLITE_TRANSIENT);
         }
+    }
+    else if([Table isEqualToString:ktAprtable]){
+        if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) 
+        {
+            
+            if(addStmt == nil) {
+                const char *sql = "insert into APRTable Values(?, ?)";
+                //const char *sql = [[NSString stringWithFormat:@"insert into Registration  Values(?,)"] cString];
+                
+                if(sqlite3_prepare_v2(database, sql, -1, &addStmt, NULL) != SQLITE_OK)
+                    NSAssert1(0, @"Error while creating add statement. '%s'", sqlite3_errmsg(database));
+            }
+            
+            sqlite3_bind_text(addStmt, 1, [[[array objectAtIndex:0] objectForKey:kName] UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(addStmt, 2, [[[array objectAtIndex:0] objectForKey:@"Date"] UTF8String], -1, SQLITE_TRANSIENT);
+            
+        }
+
     }
     if(SQLITE_DONE != sqlite3_step(addStmt))
         NSAssert1(0, @"Error while inserting data. '%s'", sqlite3_errmsg(database));

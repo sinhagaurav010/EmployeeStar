@@ -3,7 +3,7 @@
 //  EmployeeRadarApp
 //
 //  Created by saurav sinha on 28/04/12.
-//  Copyright (c) 2012 sauravsinha007@gmail.com. All rights reserved.
+//  Copyright (c) 2012   . All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -32,5 +32,11 @@
 #define LOGINTABLE @"Login"
 #define REGISTRATIONTABLE  @"Registration"
 #define EMPLOYEESTARTABLE  @"EmployeeStar"
+
+
+
+#define KsDate @"Date"
+
+#define ktAprtable @"APRTable"
 
 NSString *strName;
