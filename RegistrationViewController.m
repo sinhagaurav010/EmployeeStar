@@ -53,6 +53,8 @@
 
 - (void)viewDidLoad
 {
+    self.view.backgroundColor = [UIColor  colorWithPatternImage:[UIImage imageNamed:@"backGrn.png"]];
+    
 //    UIdatePicer *datePicer = [self datePicer];
 //    modalPickerView = [[SCModalPickerView alloc] init];
 //    [modalPickerView setPickerView:datePicer];

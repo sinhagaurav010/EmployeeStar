@@ -49,14 +49,14 @@
 {
     
     
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Info"
-                                                   message:@"Please click on specfic cell to change employee rating and notes!!" 
-                                                  delegate:self 
-                                         cancelButtonTitle:@"OK" 
-                                         otherButtonTitles:nil];
-    [alert show];
-    [alert release];
-
+//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Info"
+//                                                   message:@"Please click on specfic cell to change employee rating and notes!!" 
+//                                                  delegate:self 
+//                                         cancelButtonTitle:@"OK" 
+//                                         otherButtonTitles:nil];
+//    [alert show];
+//    [alert release];
+//
     
     self.stringEmp = [self.dictDetails  objectForKey:kEmpName];
     self.objDatabase = [[DataBaseHandler  alloc] init];

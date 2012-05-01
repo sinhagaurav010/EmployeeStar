@@ -15,6 +15,9 @@
 		1CE51E86154E74A6001675AC /* RatingCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE51E84154E74A6001675AC /* RatingCellView.m */; };
 		1CE51E87154E74A6001675AC /* RatingCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CE51E85154E74A6001675AC /* RatingCellView.xib */; };
 		5D87F662154DCC93005C596D /* MCDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D87F660154DCC93005C596D /* MCDatabase.m */; };
+		5DFD2252155069FA008BAF60 /* backGrn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DFD2251155069FA008BAF60 /* backGrn.png */; };
+		5DFD225715506AEB008BAF60 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFD225515506AEB008BAF60 /* InstructionViewController.m */; };
+		5DFD225815506AEB008BAF60 /* InstructionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFD225615506AEB008BAF60 /* InstructionViewController.xib */; };
 		C9386750154C9C0100709334 /* AddAppraisalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C938674E154C9C0100709334 /* AddAppraisalViewController.m */; };
 		C9386751154C9C0100709334 /* AddAppraisalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C938674F154C9C0100709334 /* AddAppraisalViewController.xib */; };
 		C993D913154BEAA10045D39B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C993D912154BEAA10045D39B /* UIKit.framework */; };
@@ -65,6 +68,10 @@
 		1CE51E85154E74A6001675AC /* RatingCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingCellView.xib; sourceTree = "<group>"; };
 		5D87F660154DCC93005C596D /* MCDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDatabase.m; sourceTree = "<group>"; };
 		5D87F661154DCC93005C596D /* MCDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDatabase.h; sourceTree = "<group>"; };
+		5DFD2251155069FA008BAF60 /* backGrn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backGrn.png; sourceTree = "<group>"; };
+		5DFD225415506AEB008BAF60 /* InstructionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstructionViewController.h; path = /Users/preetdhillon/Documents/Ex/EmployeeStar/InstructionViewController.h; sourceTree = "<absolute>"; };
+		5DFD225515506AEB008BAF60 /* InstructionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstructionViewController.m; path = /Users/preetdhillon/Documents/Ex/EmployeeStar/InstructionViewController.m; sourceTree = "<absolute>"; };
+		5DFD225615506AEB008BAF60 /* InstructionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InstructionViewController.xib; path = /Users/preetdhillon/Documents/Ex/EmployeeStar/InstructionViewController.xib; sourceTree = "<absolute>"; };
 		C938674D154C9C0100709334 /* AddAppraisalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAppraisalViewController.h; sourceTree = "<group>"; };
 		C938674E154C9C0100709334 /* AddAppraisalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAppraisalViewController.m; sourceTree = "<group>"; };
 		C938674F154C9C0100709334 /* AddAppraisalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAppraisalViewController.xib; sourceTree = "<group>"; };
@@ -190,6 +197,16 @@
 			name = RatingCellView;
 			sourceTree = "<group>";
 		};
+		5DFD225915506AF4008BAF60 /* InstructionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5DFD225415506AEB008BAF60 /* InstructionViewController.h */,
+				5DFD225515506AEB008BAF60 /* InstructionViewController.m */,
+				5DFD225615506AEB008BAF60 /* InstructionViewController.xib */,
+			);
+			name = InstructionViewController;
+			sourceTree = "<group>";
+		};
 		C9386753154C9C0500709334 /* AddApprisalViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +220,7 @@
 		C993D903154BEAA10045D39B = {
 			isa = PBXGroup;
 			children = (
+				5DFD225915506AF4008BAF60 /* InstructionViewController */,
 				1CBD5C4B154FFED100CC8FB9 /* AppraisalViewController */,
 				1C87EE96154FF45000E4CEA4 /* ModalController */,
 				1C87EE7D154FD4ED00E4CEA4 /* AddApprasialView */,
@@ -298,6 +316,7 @@
 		C9EB01CF154C62F800DB75D8 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5DFD2251155069FA008BAF60 /* backGrn.png */,
 				C9EB01F9154C7F9A00DB75D8 /* YellowImg.png */,
 				C9EB01F7154C7D9F00DB75D8 /* Default.jpg */,
 			);
@@ -433,6 +452,8 @@
 				1CE51E87154E74A6001675AC /* RatingCellView.xib in Resources */,
 				1C87EE80154FD58B00E4CEA4 /* AddApprasialView.xib in Resources */,
 				1CBD5C49154FFEC700CC8FB9 /* AppraisalViewController.xib in Resources */,
+				5DFD2252155069FA008BAF60 /* backGrn.png in Resources */,
+				5DFD225815506AEB008BAF60 /* InstructionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +487,7 @@
 				1CA0AC01154EB409009E6D36 /* CustomDatePickerView.m in Sources */,
 				1C87EE7B154FD4DF00E4CEA4 /* AddApprasialView.m in Sources */,
 				1CBD5C48154FFEC700CC8FB9 /* AppraisalViewController.m in Sources */,
+				5DFD225715506AEB008BAF60 /* InstructionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

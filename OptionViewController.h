@@ -13,6 +13,7 @@
 #import "AddApprasialView.h"
 #import "ModalController.h"
 #import "AppraisalViewController.h"
+#import "InstructionViewController.h"
 @interface OptionViewController : UIViewController<AppraisalViewDelegate>
 {
     UIView *viewAbove;
@@ -24,5 +25,6 @@
 -(IBAction)clickToLogout:(id)sender;
 -(IBAction)clickToAddAppraisal:(id)sender;
 -(IBAction)add:(id)sender;
+-(IBAction)Instructions:(id)sender;
 
 @end

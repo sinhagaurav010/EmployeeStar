@@ -49,12 +49,20 @@
     viewAbove.hidden = YES;
 }
 
+-(IBAction)Instructions:(id)sender
+{
+    InstructionViewController *controller = [[InstructionViewController alloc] init];
+    [self.navigationController  pushViewController:controller animated:YES];
+}
+
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     
+    self.view.backgroundColor = [UIColor  colorWithPatternImage:[UIImage imageNamed:@"backGrn.png"]];
+
     viewAbove = [[UIView  alloc] initWithFrame:self.view.bounds];
     [self.view  addSubview:viewAbove];
     
