@@ -47,6 +47,44 @@ static sqlite3 *database;
     }
     
 }
+
+-(void)getAllEmp
+{
+    [self checkAndCreateDatabase];
+
+    self.acessArray = [[NSMutableArray alloc] init];
+    
+    // Open the database from the users filessytem
+    if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK) {
+        // Setup the SQL Statement and compile it for faster access
+        NSLog(@"%@",[NSString stringWithFormat:@"select distinct EmpName from EmployeeStar where Name = '%@' AND AppraisalName = '%@'",strName,self.appraisalName] );
+        
+        const char *sqlStatement = [[NSString stringWithFormat:@"select distinct EmpName from EmployeeStar"] cString];
+        sqlite3_stmt *compiledStatement;
+        if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
+            // Loop through the results and add them to the feeds array
+            while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+                // Read the data from the result row
+                dictionaryDB = [[NSMutableDictionary alloc] init];
+//                [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)] forKey:kName];
+                [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)] forKey:kEmpName];
+                
+                [dictionaryDB setObject:@"n" forKey:KsChecked];
+                
+                [self.acessArray addObject:dictionaryDB];
+                 NSLog(@"in winary=======%@",self.acessArray);
+                
+                
+            }
+        }
+        // Release the compiled statement from memory
+        sqlite3_finalize(compiledStatement);
+        sqlite3_close(database);
+    }
+}
+
+
+
 -(void) readacessArrayFromDatabase:(NSString *)Table {
     
     

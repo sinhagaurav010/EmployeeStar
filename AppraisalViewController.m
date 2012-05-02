@@ -31,18 +31,25 @@
 
 -(void)clickToAddEmp:(id)sender
 {
+    
     NSDate *dateToday = [NSDate date];
     
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     
-    
+    [self.addappraisal  settable];
+
     self.addappraisal.dateOfCreation.text = [dateFormat  stringFromDate:dateToday];
     
     self.addappraisal.hidden = NO;
     viewAbove.hidden = NO;
     
-    databasehandler = [[DataBaseHandler  alloc] init];
+    
+}
+
+-(void)cancel
+{
+//    databasehandler = [[DataBaseHandler  alloc] init];
     
     [databasehandler readacessArrayFromDatabase:ktAprtable];
     
@@ -50,13 +57,10 @@
     self.arrayAppraisals = [[NSMutableArray  alloc] initWithArray:databasehandler.acessArray];
     
     [databasehandler     release];
-
+    
     
     [tableViewAppraisal  reloadData];
-}
-
--(void)cancel
-{
+    
     self.addappraisal.hidden = YES;
     
     viewAbove.hidden = YES;
@@ -66,7 +70,8 @@
 
 - (void)viewDidLoad
 {
-    
+    databasehandler = [[DataBaseHandler  alloc] init];
+
     self.navigationItem.title = @"Appraisal Created";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
                                                                                         target:self 
@@ -109,7 +114,6 @@
 
 -(void)getDataFromDB
 {
-    databasehandler = [[DataBaseHandler  alloc] init];
 
     [databasehandler readacessArrayFromDatabase:ktAprtable];
     

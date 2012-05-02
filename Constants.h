@@ -35,6 +35,7 @@
 #define REGISTRATIONTABLE  @"Registration"
 #define EMPLOYEESTARTABLE  @"EmployeeStar"
 
+#define KsChecked @"checkedo"
 
 
 #define KsDate @"Date"

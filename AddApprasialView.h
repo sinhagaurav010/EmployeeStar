@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DataBaseHandler.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @protocol AppraisalViewDelegate <NSObject>
 
@@ -23,9 +23,18 @@
     
 }
 
+-(void)setview;
+-(void)settable;
+
+@property(retain)NSMutableArray *arrayStaff;
+
+@property(retain)NSMutableArray *arrayAddedStaff;
+
 -(IBAction)cancel:(id)sender;
 -(IBAction)AddApp:(id)sender;
 
+
+@property(retain)IBOutlet UITableView *tableViewStaff;
 @property(retain)id<AppraisalViewDelegate>delegate;
 
 

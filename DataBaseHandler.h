@@ -18,6 +18,7 @@
 }
 
 - (BOOL)executeTableQuery:(NSString*)query;
+-(void)getAllEmp;
 
 @property(retain)NSString *appraisalName;
 

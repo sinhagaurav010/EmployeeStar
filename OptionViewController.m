@@ -38,6 +38,8 @@
     
     self.addappraisal.dateOfCreation.text = [dateFormat  stringFromDate:dateToday];
     
+    [self.addappraisal  settable];
+    
     self.addappraisal.hidden = NO;
     viewAbove.hidden = NO;
 }
@@ -66,6 +68,7 @@
     viewAbove = [[UIView  alloc] initWithFrame:self.view.bounds];
     [self.view  addSubview:viewAbove];
     
+    
     self.addappraisal = [[AddApprasialView alloc] init];
     
     NSArray *bundle = [[NSBundle mainBundle] loadNibNamed:@"AddApprasialView"
@@ -78,13 +81,15 @@
             self.addappraisal = (AddApprasialView *)object;
     }   
     
-    self.addappraisal.frame = CGRectMake(208, 325, 350, 270);
+    self.addappraisal.frame = CGRectMake(175, 200, 420, 518);
     
     viewAbove.alpha = 0.5;
     viewAbove.backgroundColor = [UIColor  blackColor];
     
+    
     self.addappraisal.delegate = self;
     
+    [self.addappraisal  setview];
     viewAbove.hidden = YES;
     self.addappraisal.hidden = YES;
     
