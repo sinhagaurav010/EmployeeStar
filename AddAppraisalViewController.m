@@ -119,6 +119,8 @@
 {
     if([alertView isEqual:myAlertView] && buttonIndex==1)
     {
+        if([myTextField.text length]>0)
+        {
         self.arrayInsert=[[NSMutableArray alloc]init];
         NSMutableDictionary *dictAdd=[[NSMutableDictionary alloc]init];
         [dictAdd setValue:strName forKey:kName];
@@ -140,6 +142,16 @@
         [self.arrayInsert addObject:dictAdd];
         [objDb writeArrayFromDatabaseInTable:EMPLOYEESTARTABLE withParameter:self.arrayInsert];
         [self loadDataFromDatabase];
+        }
+        else {
+            UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"Info"
+                                                             message:@"Please Enter Name!"
+                                                            delegate:self 
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles: nil];
+            [alertV  show];
+            [alertV  release];
+        }
     }
     
 }

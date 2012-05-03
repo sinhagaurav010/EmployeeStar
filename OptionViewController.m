@@ -70,30 +70,24 @@
     
     
     self.addappraisal = [[AddApprasialView alloc] init];
-    
     NSArray *bundle = [[NSBundle mainBundle] loadNibNamed:@"AddApprasialView"
-                                                    owner:self.addappraisal 
-                                                  options:nil];
-    
-    
+                                                    owner:self.addappraisal                                                   options:nil];    
     for (id object in bundle) {
         if ([object isKindOfClass:[self.addappraisal class]])
             self.addappraisal = (AddApprasialView *)object;
-    }   
-    
+    }  
     self.addappraisal.frame = CGRectMake(175, 200, 420, 518);
-    
+    self.addappraisal.delegate = self;
+    [self.addappraisal  setview];
+    [self.view  addSubview:self.addappraisal];
+
     viewAbove.alpha = 0.5;
     viewAbove.backgroundColor = [UIColor  blackColor];
     
     
-    self.addappraisal.delegate = self;
-    
-    [self.addappraisal  setview];
     viewAbove.hidden = YES;
     self.addappraisal.hidden = YES;
     
-    [self.view  addSubview:self.addappraisal];
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

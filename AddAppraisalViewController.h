@@ -10,6 +10,8 @@
 #import "DataBaseHandler.h"
 #import "Constants.h"
 #import "DetailAddAppraisalViewController.h"
+
+
 @interface AddAppraisalViewController : UIViewController
 {
     UITextField *myTextField;

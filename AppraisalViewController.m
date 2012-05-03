@@ -49,14 +49,14 @@
 
 -(void)cancel
 {
-//    databasehandler = [[DataBaseHandler  alloc] init];
+   DataBaseHandler  *objhandler = [[DataBaseHandler  alloc] init];
     
-    [databasehandler readacessArrayFromDatabase:ktAprtable];
+    [objhandler readacessArrayFromDatabase:ktAprtable];
     
     self.arrayAppraisals = [[NSMutableArray alloc] init];
-    self.arrayAppraisals = [[NSMutableArray  alloc] initWithArray:databasehandler.acessArray];
+    self.arrayAppraisals = [[NSMutableArray  alloc] initWithArray:objhandler.acessArray];
     
-    [databasehandler     release];
+    [objhandler     release];
     
     
     [tableViewAppraisal  reloadData];
@@ -81,23 +81,19 @@
     [self.view  addSubview:viewAbove];
     
     self.addappraisal = [[AddApprasialView alloc] init];
-    
     NSArray *bundle = [[NSBundle mainBundle] loadNibNamed:@"AddApprasialView"
                                                     owner:self.addappraisal 
                                                   options:nil];
-    
-    
     for (id object in bundle) {
         if ([object isKindOfClass:[self.addappraisal class]])
             self.addappraisal = (AddApprasialView *)object;
-    }   
-    
-    self.addappraisal.frame = CGRectMake(208, 325, 350, 270);
-    
-    viewAbove.alpha = 0.5;
+    }       
+    self.addappraisal.frame = CGRectMake(175, 200, 420, 518);
+    self.addappraisal.delegate = self;
+    [self.addappraisal  setview];
+        viewAbove.alpha = 0.5;
     viewAbove.backgroundColor = [UIColor  blackColor];
     
-    self.addappraisal.delegate = self;
     
     viewAbove.hidden = YES;
     self.addappraisal.hidden = YES;

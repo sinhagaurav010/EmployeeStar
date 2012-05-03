@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C80AF361552880200A391DA /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C80AF341552880200A391DA /* InstructionViewController.m */; };
+		1C80AF371552880200A391DA /* InstructionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C80AF351552880200A391DA /* InstructionViewController.xib */; };
 		1C87EE7B154FD4DF00E4CEA4 /* AddApprasialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C87EE7A154FD4DF00E4CEA4 /* AddApprasialView.m */; };
 		1C87EE80154FD58B00E4CEA4 /* AddApprasialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C87EE7F154FD58B00E4CEA4 /* AddApprasialView.xib */; };
 		1CA0AC01154EB409009E6D36 /* CustomDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA0AC00154EB409009E6D36 /* CustomDatePickerView.m */; };
@@ -17,8 +19,6 @@
 		5D87F662154DCC93005C596D /* MCDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D87F660154DCC93005C596D /* MCDatabase.m */; };
 		5DF6970F1551E04D0030D39A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF6970E1551E04D0030D39A /* QuartzCore.framework */; };
 		5DFD2252155069FA008BAF60 /* backGrn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DFD2251155069FA008BAF60 /* backGrn.png */; };
-		5DFD225715506AEB008BAF60 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DFD225515506AEB008BAF60 /* InstructionViewController.m */; };
-		5DFD225815506AEB008BAF60 /* InstructionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFD225615506AEB008BAF60 /* InstructionViewController.xib */; };
 		C9386750154C9C0100709334 /* AddAppraisalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C938674E154C9C0100709334 /* AddAppraisalViewController.m */; };
 		C9386751154C9C0100709334 /* AddAppraisalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C938674F154C9C0100709334 /* AddAppraisalViewController.xib */; };
 		C993D913154BEAA10045D39B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C993D912154BEAA10045D39B /* UIKit.framework */; };
@@ -54,6 +54,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C80AF331552880200A391DA /* InstructionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionViewController.h; sourceTree = "<group>"; };
+		1C80AF341552880200A391DA /* InstructionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionViewController.m; sourceTree = "<group>"; };
+		1C80AF351552880200A391DA /* InstructionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InstructionViewController.xib; sourceTree = "<group>"; };
 		1C87EE79154FD4DF00E4CEA4 /* AddApprasialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddApprasialView.h; sourceTree = "<group>"; };
 		1C87EE7A154FD4DF00E4CEA4 /* AddApprasialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddApprasialView.m; sourceTree = "<group>"; };
 		1C87EE7F154FD58B00E4CEA4 /* AddApprasialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddApprasialView.xib; sourceTree = "<group>"; };
@@ -71,9 +74,6 @@
 		5D87F661154DCC93005C596D /* MCDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDatabase.h; sourceTree = "<group>"; };
 		5DF6970E1551E04D0030D39A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5DFD2251155069FA008BAF60 /* backGrn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backGrn.png; sourceTree = "<group>"; };
-		5DFD225415506AEB008BAF60 /* InstructionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InstructionViewController.h; path = /Users/preetdhillon/Documents/Ex/EmployeeStar/InstructionViewController.h; sourceTree = "<absolute>"; };
-		5DFD225515506AEB008BAF60 /* InstructionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InstructionViewController.m; path = /Users/preetdhillon/Documents/Ex/EmployeeStar/InstructionViewController.m; sourceTree = "<absolute>"; };
-		5DFD225615506AEB008BAF60 /* InstructionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InstructionViewController.xib; path = /Users/preetdhillon/Documents/Ex/EmployeeStar/InstructionViewController.xib; sourceTree = "<absolute>"; };
 		C938674D154C9C0100709334 /* AddAppraisalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAppraisalViewController.h; sourceTree = "<group>"; };
 		C938674E154C9C0100709334 /* AddAppraisalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAppraisalViewController.m; sourceTree = "<group>"; };
 		C938674F154C9C0100709334 /* AddAppraisalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAppraisalViewController.xib; sourceTree = "<group>"; };
@@ -203,9 +203,9 @@
 		5DFD225915506AF4008BAF60 /* InstructionViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5DFD225415506AEB008BAF60 /* InstructionViewController.h */,
-				5DFD225515506AEB008BAF60 /* InstructionViewController.m */,
-				5DFD225615506AEB008BAF60 /* InstructionViewController.xib */,
+				1C80AF331552880200A391DA /* InstructionViewController.h */,
+				1C80AF341552880200A391DA /* InstructionViewController.m */,
+				1C80AF351552880200A391DA /* InstructionViewController.xib */,
 			);
 			name = InstructionViewController;
 			sourceTree = "<group>";
@@ -457,7 +457,7 @@
 				1C87EE80154FD58B00E4CEA4 /* AddApprasialView.xib in Resources */,
 				1CBD5C49154FFEC700CC8FB9 /* AppraisalViewController.xib in Resources */,
 				5DFD2252155069FA008BAF60 /* backGrn.png in Resources */,
-				5DFD225815506AEB008BAF60 /* InstructionViewController.xib in Resources */,
+				1C80AF371552880200A391DA /* InstructionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,7 +491,7 @@
 				1CA0AC01154EB409009E6D36 /* CustomDatePickerView.m in Sources */,
 				1C87EE7B154FD4DF00E4CEA4 /* AddApprasialView.m in Sources */,
 				1CBD5C48154FFEC700CC8FB9 /* AppraisalViewController.m in Sources */,
-				5DFD225715506AEB008BAF60 /* InstructionViewController.m in Sources */,
+				1C80AF361552880200A391DA /* InstructionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

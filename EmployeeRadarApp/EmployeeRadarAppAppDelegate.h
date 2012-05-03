@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ModalController.h"
 #import "FirstViewController.h"
 @interface EmployeeRadarAppAppDelegate : UIResponder <UIApplicationDelegate>
 {
