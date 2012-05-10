@@ -37,6 +37,11 @@
     self.sliderval.value = [string  integerValue];
     self.labelRateVal.text = string;
     
+    self.backgroundColor = [UIColor  lightGrayColor];
+    
+    [self.layer setCornerRadius:35.0f];
+    [self.layer setMasksToBounds:YES];
+    
 //    self.arrayRating = [[NSMutableArray  alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", nil];
 //    [tableviewRating  reloadData];
     

@@ -37,7 +37,11 @@
     self.navigationItem.title = [NSString  stringWithFormat:@"Employees Added for Appraisal: %@",self.stringAppName];
     
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(clickToAddEmp:)];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Add Employees"
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self
+                                                                          action:@selector(clickToAddEmp:)];
+    
     [self loadDataFromDatabase];
     
 }

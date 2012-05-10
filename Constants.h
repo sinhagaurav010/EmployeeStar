@@ -32,7 +32,7 @@
 #define KsAppraisalName @"AppraisalName"
 
 #define LOGINTABLE @"Login"
-#define REGISTRATIONTABLE  @"Registration"
+#define REGISTRATIONTABLE  @"Create Profile"
 #define EMPLOYEESTARTABLE  @"EmployeeStar"
 
 #define KsChecked @"checkedo"
@@ -43,3 +43,45 @@
 #define ktAprtable @"APRTable"
 
 NSString *strName;
+
+
+/*
+ When you click ‘create profile now’
+ ·         Use ‘Create Profile’ instead of registration in page title (Done)
+ 
+ ·         All the fonts need to be the same sizes (organisation is smaller, make all this size) (Done)
+ 
+ ·         Date format is incorrect, use dd/mm/yy  (Done)
+ 
+ 
+ When you click ‘create a new appraisal’
+ ·         We like this box style, please use in other areas    
+ 
+ ·         Date format is incorrect, use dd/mm/yy  (Done)
+ 
+ 
+ When you click ‘develop your appraisal’
+ ·         + button – amend to ‘Add new’(Done)
+ 
+ 
+ When in the appraisal
+ ·         If a score has been done for an employee, please can we add a tick next to the employee name?
+ 
+ ·         When adding scores, please use the new grey rounded box(Done)
+ 
+ ·         Task Clarity (space between words needed)(Done)
+ 
+ ·         Exploiting Skills (space between words needed)(Done)
+ 
+ ·         At bottom of adding scores add a done button to go back to last screen
+ 
+ 
+ On main screen
+ ·         Add new button to ‘Add Employees’(Done)
+ 
+ ·         Need a better style design for these buttons, too flat…
+ 
+ 
+ 
+ 
+ */

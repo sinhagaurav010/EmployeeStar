@@ -35,7 +35,7 @@
              forControlEvents:UIControlEventValueChanged];
 
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        [df setDateFormat:@"mm-dd-yyyy"];
+        [df setDateFormat:@"dd/MM/yyyy"];
         self.stringDate = [NSString stringWithFormat:@"%@",
                       [df stringFromDate:[NSDate date]]];
 //        [df release];
@@ -49,7 +49,7 @@
 {
     ////NSLog(@"Date if Birth");
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"MM-dd-yyyy"];
+    [df setDateFormat:@"dd/MM/yyyy"];
     
    self.stringDate =  [NSString stringWithFormat:@"%@",
                   [df stringFromDate:self.datePickerCustom.date]];

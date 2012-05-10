@@ -73,9 +73,10 @@
     databasehandler = [[DataBaseHandler  alloc] init];
 
     self.navigationItem.title = @"Appraisal Created";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd 
-                                                                                        target:self 
-                                                                                          action:@selector(clickToAddEmp:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Add New"
+                                                                             style:UIBarButtonItemStylePlain
+                                                                            target:self
+                                                                            action:@selector(clickToAddEmp:)];
     
     viewAbove = [[UIView  alloc] initWithFrame:self.view.bounds];
     [self.view  addSubview:viewAbove];

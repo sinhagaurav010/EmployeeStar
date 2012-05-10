@@ -94,7 +94,12 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [arrayRating  objectAtIndex:section];
+    if([[arrayRating  objectAtIndex:section] isEqualToString:kTaskClarity])
+        return @"Task Clarity";
+    else if([[arrayRating  objectAtIndex:section] isEqualToString:kExploitingSkills])
+        return @"Exploiting Skills";
+    else
+        return [arrayRating  objectAtIndex:section];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
