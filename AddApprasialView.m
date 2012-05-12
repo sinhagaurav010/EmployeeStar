@@ -20,16 +20,16 @@
     return self;
 }
 
+
+
 -(void)setview
 {
-
+    
     [self.layer setCornerRadius:35.0f];
     [self.layer setMasksToBounds:YES];
-
-
+    self.backgroundColor = [UIColor  lightGrayColor];
+    
 }
-
-
 
 -(void)settable
 {
@@ -72,7 +72,14 @@
 	cell.textLabel.text = [[self.arrayStaff objectAtIndex:indexPath.row] objectForKey:kEmpName];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if([self.arrayAddedStaff  containsObject:[[self.arrayStaff objectAtIndex:indexPath.row] objectForKey:kEmpName]])
+    {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;  
+    }
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryNone;  
+    }
     
 
 	return cell;

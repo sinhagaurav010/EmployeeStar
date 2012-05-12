@@ -10,18 +10,18 @@
 #import "DataBaseHandler.h"
 #import "Constants.h"
 #import "DetailAddAppraisalViewController.h"
+#import "AddEmployeeView.h"
 
-
-@interface AddAppraisalViewController : UIViewController
+@interface AddAppraisalViewController : UIViewController<AddEmployeeViewDelegate>
 {
     UITextField *myTextField;
     UIAlertView *myAlertView;
     IBOutlet UITableView *tblViewAdd;
     DataBaseHandler *objDb;
-    
+    UIView *viewAlpha;
 }
 @property(retain)NSString *stringAppName;
-
+@property(retain)AddEmployeeView *addemployeeview;
 @property(retain,nonatomic)NSMutableArray *arrayAddAppriasal;
 @property(retain,nonatomic)NSMutableArray *arrayInsert;
 -(void)loadDataFromDatabase;

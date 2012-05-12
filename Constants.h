@@ -55,7 +55,7 @@ NSString *strName;
  
  
  When you click ‘create a new appraisal’
- ·         We like this box style, please use in other areas    
+ ·         We like this box style, please use in other areas(Done)    
  
  ·         Date format is incorrect, use dd/mm/yy  (Done)
  
@@ -73,7 +73,7 @@ NSString *strName;
  
  ·         Exploiting Skills (space between words needed)(Done)
  
- ·         At bottom of adding scores add a done button to go back to last screen
+ ·         At bottom of adding scores add a done button to go back to last screen(Done)
  
  
  On main screen

@@ -18,6 +18,8 @@
 		1CE51E87154E74A6001675AC /* RatingCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CE51E85154E74A6001675AC /* RatingCellView.xib */; };
 		5D87F662154DCC93005C596D /* MCDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D87F660154DCC93005C596D /* MCDatabase.m */; };
 		5DF6970F1551E04D0030D39A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF6970E1551E04D0030D39A /* QuartzCore.framework */; };
+		5DF80359155E73D20049AFB6 /* AddEmployeeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF80358155E73D20049AFB6 /* AddEmployeeView.m */; };
+		5DF8035D155E73F30049AFB6 /* AddEmployeeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8035C155E73F30049AFB6 /* AddEmployeeView.xib */; };
 		5DFD2252155069FA008BAF60 /* backGrn.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DFD2251155069FA008BAF60 /* backGrn.png */; };
 		C9386750154C9C0100709334 /* AddAppraisalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C938674E154C9C0100709334 /* AddAppraisalViewController.m */; };
 		C9386751154C9C0100709334 /* AddAppraisalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C938674F154C9C0100709334 /* AddAppraisalViewController.xib */; };
@@ -73,6 +75,9 @@
 		5D87F660154DCC93005C596D /* MCDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDatabase.m; sourceTree = "<group>"; };
 		5D87F661154DCC93005C596D /* MCDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDatabase.h; sourceTree = "<group>"; };
 		5DF6970E1551E04D0030D39A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5DF80357155E73D20049AFB6 /* AddEmployeeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEmployeeView.h; sourceTree = "<group>"; };
+		5DF80358155E73D20049AFB6 /* AddEmployeeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEmployeeView.m; sourceTree = "<group>"; };
+		5DF8035C155E73F30049AFB6 /* AddEmployeeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddEmployeeView.xib; sourceTree = "<group>"; };
 		5DFD2251155069FA008BAF60 /* backGrn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backGrn.png; sourceTree = "<group>"; };
 		C938674D154C9C0100709334 /* AddAppraisalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAppraisalViewController.h; sourceTree = "<group>"; };
 		C938674E154C9C0100709334 /* AddAppraisalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAppraisalViewController.m; sourceTree = "<group>"; };
@@ -200,6 +205,16 @@
 			name = RatingCellView;
 			sourceTree = "<group>";
 		};
+		5DF8035B155E73D50049AFB6 /* AddEmployeeView */ = {
+			isa = PBXGroup;
+			children = (
+				5DF80357155E73D20049AFB6 /* AddEmployeeView.h */,
+				5DF80358155E73D20049AFB6 /* AddEmployeeView.m */,
+				5DF8035C155E73F30049AFB6 /* AddEmployeeView.xib */,
+			);
+			name = AddEmployeeView;
+			sourceTree = "<group>";
+		};
 		5DFD225915506AF4008BAF60 /* InstructionViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +238,7 @@
 		C993D903154BEAA10045D39B = {
 			isa = PBXGroup;
 			children = (
+				5DF8035B155E73D50049AFB6 /* AddEmployeeView */,
 				5DF6970E1551E04D0030D39A /* QuartzCore.framework */,
 				5DFD225915506AF4008BAF60 /* InstructionViewController */,
 				1CBD5C4B154FFED100CC8FB9 /* AppraisalViewController */,
@@ -458,6 +474,7 @@
 				1CBD5C49154FFEC700CC8FB9 /* AppraisalViewController.xib in Resources */,
 				5DFD2252155069FA008BAF60 /* backGrn.png in Resources */,
 				1C80AF371552880200A391DA /* InstructionViewController.xib in Resources */,
+				5DF8035D155E73F30049AFB6 /* AddEmployeeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +509,7 @@
 				1C87EE7B154FD4DF00E4CEA4 /* AddApprasialView.m in Sources */,
 				1CBD5C48154FFEC700CC8FB9 /* AppraisalViewController.m in Sources */,
 				1C80AF361552880200A391DA /* InstructionViewController.m in Sources */,
+				5DF80359155E73D20049AFB6 /* AddEmployeeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

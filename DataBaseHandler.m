@@ -69,6 +69,8 @@ static sqlite3 *database;
 //                [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)] forKey:kName];
                 [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)] forKey:kEmpName];
                 
+//                [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 0)] forKey:kEmpName];
+                
                 [dictionaryDB setObject:@"n" forKey:KsChecked];
                 
                 [self.acessArray addObject:dictionaryDB];
@@ -130,7 +132,14 @@ static sqlite3 *database;
                 // Setup the SQL Statement and compile it for faster access
                 NSLog(@"%@",[NSString stringWithFormat:@"select * from EmployeeStar where Name = '%@' AND AppraisalName = '%@'",strName,self.appraisalName] );
                 
-                const char *sqlStatement = [[NSString stringWithFormat:@"select * from EmployeeStar where Name = '%@' AND AppraisalName = '%@'",strName,self.appraisalName] cString];
+                NSString *query;
+                if(self.appraisalName)
+                query= [NSString stringWithFormat:@"select * from EmployeeStar where Name = '%@' AND AppraisalName = '%@'",strName,self.appraisalName] ;
+                else
+                    query= [NSString stringWithFormat:@"select * from EmployeeStar where Name = '%@'",strName,self] ;
+                
+                const char *sqlStatement = [[NSString stringWithFormat:query] cString];
+                
                 sqlite3_stmt *compiledStatement;
                 if(sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK) {
                     // Loop through the results and add them to the feeds array
@@ -151,6 +160,7 @@ static sqlite3 *database;
                         [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 11)] forKey:kWork];
                         [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 12)] forKey:kRelationships];
                         [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 13)] forKey:kOpportunities];
+//                       [dictionaryDB setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 13)] forKey:KsAppraisalName];
                         [self.acessArray addObject:dictionaryDB];
                         // NSLog(@"in winary=======%@",WINERY);
                         

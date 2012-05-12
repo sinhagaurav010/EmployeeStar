@@ -9,7 +9,7 @@
 #import "AddAppraisalViewController.h"
 
 @implementation AddAppraisalViewController
-@synthesize arrayAddAppriasal,arrayInsert,stringAppName;
+@synthesize arrayAddAppriasal,arrayInsert,stringAppName,addemployeeview;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,6 +31,39 @@
 
 - (void)viewDidLoad
 {
+    viewAlpha = [[UIView alloc] initWithFrame:self.view.bounds];
+    [self.view  addSubview:viewAlpha];
+    viewAlpha.alpha = 0.5;
+    viewAlpha.hidden = YES;
+    viewAlpha.backgroundColor = [UIColor  blackColor];
+    
+    self.addemployeeview = [[AddEmployeeView  alloc] init]; 
+    NSArray *bundle = [[NSBundle mainBundle] loadNibNamed:@"AddEmployeeView"
+                                                    owner:self.addemployeeview 
+                                                  options:nil];
+    
+    
+    for (id object in bundle) 
+    {
+        if ([object isKindOfClass:[AddEmployeeView class]])
+            self.addemployeeview   = (AddEmployeeView *)object;
+    }   
+    
+    //    self.addemployeeview.delegate = self;
+    
+    [self.view  addSubview:self.addemployeeview];
+    
+    self.addemployeeview.frame  =  CGRectMake(184, 
+                                              180, 
+                                              400, 
+                                              500);
+    [self.addemployeeview setview];
+    self.addemployeeview.hidden = YES;
+    self.addemployeeview.delegate = self;
+    self.addemployeeview.appraisalName = self.stringAppName;
+    [self.addemployeeview loadview];
+    
+    [self.view  addSubview:self.addemployeeview];
     
     [super viewDidLoad];
     
@@ -47,12 +80,75 @@
 }
 
 
+
+
+-(void)addNewEmployeeDataInDBWithEmpName:(NSString *)stringName
+{
+    self.arrayInsert=[[NSMutableArray alloc]init];
+    NSMutableDictionary *dictAdd=[[NSMutableDictionary alloc]init];
+    [dictAdd setValue:strName forKey:kName];
+    [dictAdd setValue:stringName forKey:kEmpName];
+    [dictAdd setValue:@"0T90TN.A" forKey:kTaskClarity];
+    [dictAdd setValue:@"0T90TN.A" forKey:kEquipment];
+    [dictAdd setValue:@"0T90TN.A" forKey:kExploitingSkills];
+    [dictAdd setValue:@"0T90TN.A" forKey:kRecognition];
+    [dictAdd setValue:@"0T90TN.A" forKey:kSupervision];
+    [dictAdd setValue:@"0T90TN.A" forKey:kDevelopment];
+    [dictAdd setValue:@"0T90TN.A" forKey:kProgression];
+    [dictAdd setValue:@"0T90TN.A" forKey:kOpinions];
+    [dictAdd setValue:@"0T90TN.A" forKey:kPurpose];
+    [dictAdd setValue:@"0T90TN.A" forKey:kWork];
+    [dictAdd setValue:@"0T90TN.A" forKey:kRelationships];
+    [dictAdd setValue:@"0T90TN.A" forKey:kOpportunities];
+    [dictAdd setValue:self.stringAppName forKey:KsAppraisalName];
+    
+    [self.arrayInsert addObject:dictAdd];
+    [objDb writeArrayFromDatabaseInTable:EMPLOYEESTARTABLE withParameter:self.arrayInsert];
+    
+    [dictAdd  release];
+}
+
+#pragma mark -AddemployeeViewDelegate-
+
+-(void)cancel
+{
+    [self.addemployeeview.fieldName   resignFirstResponder ];
+    self.addemployeeview.hidden = YES;
+    viewAlpha.hidden = YES;
+}
+
+-(void)submit
+{
+    [self.addemployeeview.fieldName   resignFirstResponder ];
+    
+    if([self.addemployeeview.fieldName.text length]>0)
+    {
+        [self addNewEmployeeDataInDBWithEmpName:self.addemployeeview.fieldName.text];
+    }
+    NSLog(@"%@",self.addemployeeview.arrayEmp );
+    
+    for(int i = 0;i<[self.addemployeeview.arrayEmp  count];i++)
+    {
+        if([[[self.addemployeeview.arrayEmp objectAtIndex:i] objectForKey:KsChecked] isEqualToString:@"y"])
+        {
+            [self addNewEmployeeDataInDBWithEmpName:[[self.addemployeeview.arrayEmp objectAtIndex:i] objectForKey:kEmpName] ];
+        }
+    }
+    self.addemployeeview.hidden = YES;
+    viewAlpha.hidden = YES;
+    
+    [self loadDataFromDatabase];
+}
+
+#pragma mark -loadDataFromDatabase-
+
+
 -(void)loadDataFromDatabase
 {
     objDb=[[DataBaseHandler alloc]init];
     objDb.appraisalName = self.stringAppName;
     [objDb readacessArrayFromDatabase:EMPLOYEESTARTABLE];
-    self.arrayAddAppriasal=[[NSMutableArray alloc] initWithArray:objDb.acessArray];
+    self.arrayAddAppriasal = [[NSMutableArray alloc] initWithArray:objDb.acessArray];
     [tblViewAdd reloadData];
 }
 - (void)viewDidUnload
@@ -103,60 +199,67 @@
 #pragma mark-User Defined Functions
 -(IBAction)clickToAddEmp:(id)sender
 {
-    myAlertView = [[UIAlertView alloc] initWithTitle:@"Add Employee \n" 
-                                             message:@"\n" 
-                                            delegate:self 
-                                   cancelButtonTitle:@"Cancel" 
-                                   otherButtonTitles:@"OK", nil];
+    self.addemployeeview.arrayAlreadyAdded = [NSArray  arrayWithArray:self.arrayAddAppriasal];
+    [self.addemployeeview loadview];
     
-     myTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 45.0, 260.0, 25.0)];
-    [myTextField setBackgroundColor:[UIColor whiteColor]];
-    [myAlertView addSubview:myTextField];
-    if(TARGET_IPHONE_SIMULATOR)
-    {
-    }
-    [myAlertView show];
+    self.addemployeeview.hidden = NO;
+    viewAlpha.hidden = NO;
+    
+    //    myAlertView = [[UIAlertView alloc] initWithTitle:@"Add Employee \n" 
+    //                                             message:@"\n" 
+    //                                            delegate:self 
+    //                                   cancelButtonTitle:@"Cancel" 
+    //                                   otherButtonTitles:@"OK", nil];
+    //    
+    //     myTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 45.0, 260.0, 25.0)];
+    //    [myTextField setBackgroundColor:[UIColor whiteColor]];
+    //    [myAlertView addSubview:myTextField];
+    //    if(TARGET_IPHONE_SIMULATOR)
+    //    {
+    //    }
+    //    [myAlertView show];
 }
 #pragma mark-UIAlertView delegates
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if([alertView isEqual:myAlertView] && buttonIndex==1)
-    {
-        if([myTextField.text length]>0)
-        {
-        self.arrayInsert=[[NSMutableArray alloc]init];
-        NSMutableDictionary *dictAdd=[[NSMutableDictionary alloc]init];
-        [dictAdd setValue:strName forKey:kName];
-        [dictAdd setValue:myTextField.text forKey:kEmpName];
-        [dictAdd setValue:@"0T90TN.A" forKey:kTaskClarity];
-        [dictAdd setValue:@"0T90TN.A" forKey:kEquipment];
-        [dictAdd setValue:@"0T90TN.A" forKey:kExploitingSkills];
-        [dictAdd setValue:@"0T90TN.A" forKey:kRecognition];
-        [dictAdd setValue:@"0T90TN.A" forKey:kSupervision];
-        [dictAdd setValue:@"0T90TN.A" forKey:kDevelopment];
-        [dictAdd setValue:@"0T90TN.A" forKey:kProgression];
-        [dictAdd setValue:@"0T90TN.A" forKey:kOpinions];
-        [dictAdd setValue:@"0T90TN.A" forKey:kPurpose];
-        [dictAdd setValue:@"0T90TN.A" forKey:kWork];
-        [dictAdd setValue:@"0T90TN.A" forKey:kRelationships];
-        [dictAdd setValue:@"0T90TN.A" forKey:kOpportunities];
-        [dictAdd setValue:self.stringAppName forKey:KsAppraisalName];
-
-        [self.arrayInsert addObject:dictAdd];
-        [objDb writeArrayFromDatabaseInTable:EMPLOYEESTARTABLE withParameter:self.arrayInsert];
-        [self loadDataFromDatabase];
-        }
-        else {
-            UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"Info"
-                                                             message:@"Please Enter Name!"
-                                                            delegate:self 
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles: nil];
-            [alertV  show];
-            [alertV  release];
-        }
-    }
-    
-}
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    if([alertView isEqual:myAlertView] && buttonIndex==1)
+//    {
+//        if([myTextField.text length]>0)
+//        {
+//            self.arrayInsert=[[NSMutableArray alloc]init];
+//            NSMutableDictionary *dictAdd=[[NSMutableDictionary alloc]init];
+//            [dictAdd setValue:strName forKey:kName];
+//            [dictAdd setValue:myTextField.text forKey:kEmpName];
+//            [dictAdd setValue:@"0T90TN.A" forKey:kTaskClarity];
+//            [dictAdd setValue:@"0T90TN.A" forKey:kEquipment];
+//            [dictAdd setValue:@"0T90TN.A" forKey:kExploitingSkills];
+//            [dictAdd setValue:@"0T90TN.A" forKey:kRecognition];
+//            [dictAdd setValue:@"0T90TN.A" forKey:kSupervision];
+//            [dictAdd setValue:@"0T90TN.A" forKey:kDevelopment];
+//            [dictAdd setValue:@"0T90TN.A" forKey:kProgression];
+//            [dictAdd setValue:@"0T90TN.A" forKey:kOpinions];
+//            [dictAdd setValue:@"0T90TN.A" forKey:kPurpose];
+//            [dictAdd setValue:@"0T90TN.A" forKey:kWork];
+//            [dictAdd setValue:@"0T90TN.A" forKey:kRelationships];
+//            [dictAdd setValue:@"0T90TN.A" forKey:kOpportunities];
+//            [dictAdd setValue:self.stringAppName forKey:KsAppraisalName];
+//            
+//            [self.arrayInsert addObject:dictAdd];
+//            [objDb writeArrayFromDatabaseInTable:EMPLOYEESTARTABLE withParameter:self.arrayInsert];
+//            [self loadDataFromDatabase];
+//        }
+//        else 
+//        {
+//            UIAlertView *alertV = [[UIAlertView alloc] initWithTitle:@"Info"
+//                                                             message:@"Please Enter Name!"
+//                                                            delegate:self 
+//                                                   cancelButtonTitle:@"OK"
+//                                                   otherButtonTitles: nil];
+//            [alertV  show];
+//            [alertV  release];
+//        }
+//    }
+//    
+//}
 @end

@@ -32,7 +32,11 @@
 - (void)viewDidLoad
 {
     self.view.backgroundColor = [UIColor  colorWithPatternImage:[UIImage imageNamed:@"backGrn.png"]];
-
+    if(TARGET_IPHONE_SIMULATOR)
+    {
+        txtFldUsrName.text=@"test";
+        txtFldPswd.text=@"test";
+    }
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

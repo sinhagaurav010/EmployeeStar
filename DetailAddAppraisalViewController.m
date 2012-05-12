@@ -43,11 +43,18 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(void)Home
+{
+    [self.navigationController  popToViewController:[self.navigationController.viewControllers objectAtIndex:[self.navigationController.viewControllers count]-4] animated:YES];
+}
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
-    
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Home"
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self
+                                                                          action:@selector(Home)];
     
 //    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Info"
 //                                                   message:@"Please click on specfic cell to change employee rating and notes!!" 
