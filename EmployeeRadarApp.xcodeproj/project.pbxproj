@@ -16,6 +16,7 @@
 		1CBD5C49154FFEC700CC8FB9 /* AppraisalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CBD5C47154FFEC700CC8FB9 /* AppraisalViewController.xib */; };
 		1CE51E86154E74A6001675AC /* RatingCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CE51E84154E74A6001675AC /* RatingCellView.m */; };
 		1CE51E87154E74A6001675AC /* RatingCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1CE51E85154E74A6001675AC /* RatingCellView.xib */; };
+		5D073BA7156447F80097CF7E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D073BA6156447F80097CF7E /* MessageUI.framework */; };
 		5D87F662154DCC93005C596D /* MCDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D87F660154DCC93005C596D /* MCDatabase.m */; };
 		5DF6970F1551E04D0030D39A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DF6970E1551E04D0030D39A /* QuartzCore.framework */; };
 		5DF80359155E73D20049AFB6 /* AddEmployeeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF80358155E73D20049AFB6 /* AddEmployeeView.m */; };
@@ -72,6 +73,7 @@
 		1CE51E83154E74A6001675AC /* RatingCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingCellView.h; sourceTree = "<group>"; };
 		1CE51E84154E74A6001675AC /* RatingCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingCellView.m; sourceTree = "<group>"; };
 		1CE51E85154E74A6001675AC /* RatingCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingCellView.xib; sourceTree = "<group>"; };
+		5D073BA6156447F80097CF7E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		5D87F660154DCC93005C596D /* MCDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCDatabase.m; sourceTree = "<group>"; };
 		5D87F661154DCC93005C596D /* MCDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCDatabase.h; sourceTree = "<group>"; };
 		5DF6970E1551E04D0030D39A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -139,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D073BA7156447F80097CF7E /* MessageUI.framework in Frameworks */,
 				5DF6970F1551E04D0030D39A /* QuartzCore.framework in Frameworks */,
 				C9EB01E5154C689800DB75D8 /* libsqlite3.0.dylib in Frameworks */,
 				C993D913154BEAA10045D39B /* UIKit.framework in Frameworks */,
@@ -238,6 +241,7 @@
 		C993D903154BEAA10045D39B = {
 			isa = PBXGroup;
 			children = (
+				5D073BA6156447F80097CF7E /* MessageUI.framework */,
 				5DF8035B155E73D50049AFB6 /* AddEmployeeView */,
 				5DF6970E1551E04D0030D39A /* QuartzCore.framework */,
 				5DFD225915506AF4008BAF60 /* InstructionViewController */,

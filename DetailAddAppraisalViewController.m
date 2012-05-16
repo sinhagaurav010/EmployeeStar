@@ -51,11 +51,18 @@
 
 - (void)viewDidLoad
 {
+    
+        
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Home"
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
                                                                           action:@selector(Home)];
     
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Add Employees"
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self
+                                                                          action:@selector(sendMailButtonClicked)];
+
 //    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Info"
 //                                                   message:@"Please click on specfic cell to change employee rating and notes!!" 
 //                                                  delegate:self 
@@ -97,6 +104,47 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
+
+#pragma mark -Email-
+-(void)sendMailButtonClicked
+{	
+	MFMailComposeViewController *controller = [MFMailComposeViewController new];
+	[controller setToRecipients:[NSArray arrayWithObjects:@"info@nowabout.co.uk",nil]];
+	[controller setMessageBody:@"" isHTML:NO];
+	[controller setMailComposeDelegate:self];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.dictDetails];
+    [controller addAttachmentData:data
+                         mimeType:@"application/octet-stream"  
+                         fileName:nil]; 
+	[self presentModalViewController:controller animated:YES];
+	[controller release];
+	
+	
+}
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+	NSString *message = @"";
+	if( MFMailComposeResultSent == result )
+	{
+		message = @"Mail sent OK";
+	}
+	else if( MFMailComposeResultCancelled == result )
+	{
+		
+	}
+	else
+	{
+		message = @"Mail sent failed";
+	}
+	if( [message length] > 0 )
+	{
+		//UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+		//[alertView show];
+		//[alertView release];
+	}
+	[controller dismissModalViewControllerAnimated:YES];
+}
+
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

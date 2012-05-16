@@ -12,7 +12,9 @@
 #import "RatingView.h"
 #import "RatingCellView.h"
 #import "DataBaseHandler.h"
-@interface DetailAddAppraisalViewController : UIViewController<ratingViewDelegate>
+#import <MessageUI/MessageUI.h>
+
+@interface DetailAddAppraisalViewController : UIViewController<ratingViewDelegate,MFMailComposeViewControllerDelegate>
 {
     NSInteger selectedIndex;
     DataBaseHandler *objDatabase;   
