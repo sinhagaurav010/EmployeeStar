@@ -43,7 +43,7 @@
 #define ktAprtable @"APRTable"
 
 NSString *strName;
-
+NSString *strOrganisation;
 
 /*
  When you click ‘create profile now’

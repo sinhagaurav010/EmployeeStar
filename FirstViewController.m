@@ -64,6 +64,7 @@
     for (int i=0; i<[objBb.acessArray count]; i++) {
         if ([[[objBb.acessArray objectAtIndex:i] objectForKey:kEmail] isEqualToString:txtFldUsrName.text] && [[[objBb.acessArray objectAtIndex:i] objectForKey:kPswd] isEqualToString:txtFldPswd.text]) {
             strName=[[objBb.acessArray objectAtIndex:i] objectForKey:kEmail];
+            strOrganisation=[[objBb.acessArray objectAtIndex:i] objectForKey:kOrganisation];
             flag=YES;
             break;
         }

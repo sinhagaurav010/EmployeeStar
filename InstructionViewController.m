@@ -14,13 +14,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        
-        
-        
-        
-        
-        
-        /////hi code
+            /////hi code
         // Custom initialization
     }
     return self;

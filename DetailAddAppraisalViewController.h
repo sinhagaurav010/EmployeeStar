@@ -17,12 +17,15 @@
 @interface DetailAddAppraisalViewController : UIViewController<ratingViewDelegate,MFMailComposeViewControllerDelegate>
 {
     NSInteger selectedIndex;
-    DataBaseHandler *objDatabase;   
+    DataBaseHandler *objDatabase;  
+    NSMutableArray *arrayFilePath;
 }
 -(void)getdata;
-
+-(void)getEmailBodyContent;
+-(void)SaveHtmlFileInDocDir:(NSString *)strHtml withFileName:(NSString *)htmlFilename;
+-(void)RomoveFilesFromDocDir;
 @property(retain)DataBaseHandler *objDatabase;
-
+@property(retain,nonatomic)NSString *strEmailBody;
 @property(retain)NSMutableArray *arrayRating;
 
 @property(retain)NSString *stringEmp;

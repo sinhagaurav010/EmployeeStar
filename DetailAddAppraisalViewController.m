@@ -9,7 +9,7 @@
 #import "DetailAddAppraisalViewController.h"
 
 @implementation DetailAddAppraisalViewController
-@synthesize dictDetails,ratingview,tableRate,arrayRating,objDatabase,stringEmp,stringAppName;
+@synthesize dictDetails,ratingview,tableRate,arrayRating,objDatabase,stringEmp,stringAppName,strEmailBody;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -58,7 +58,7 @@
                                                                           target:self
                                                                           action:@selector(Home)];
     
-    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Add Employees"
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Email"
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
                                                                           action:@selector(sendMailButtonClicked)];
@@ -106,17 +106,51 @@
 }
 
 #pragma mark -Email-
+-(void)getEmailBodyContent
+{
+    arrayFilePath=[[NSMutableArray alloc]init];
+    self.strEmailBody=[NSString stringWithFormat:@"<html><head></head><body><center><b>Sheehy Employee Radar <BR> Employee Name:%@ <BR>Organisation: %@<BR>Appraisal name:%@ <BR> Date completed:%@<BR></b></center><table align='center' border='0' cellspacing='30%%'><tr><th>Attribute</th><th>Score</th><th>Notes</th></tr>",self.stringEmp,strOrganisation,self.stringAppName,[NSDate date]];
+    NSMutableDictionary *dictEmail;
+    dictEmail = [[NSMutableDictionary  alloc] initWithDictionary:[objDatabase  readacessDictFromDatabase:[NSString  stringWithFormat:@"SELECT * FROM EmployeeStar WHERE EmpName = '%@' AND AppraisalName = '%@'",self.stringEmp,self.stringAppName]]];
+    for(int i=0;i<[[dictEmail allKeys] count];i++)
+    {
+        self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<tr><td>%@</td><td>%@</td><td>%@</td><tr><td colspan='3'><hr size='1' color='black'/></td></tr></tr>",[arrayRating objectAtIndex:i],[dictEmail objectForKey:[arrayRating objectAtIndex:i]],@"Notes"]];
+    }
+    self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"</table></body></html>"]];
+    [self SaveHtmlFileInDocDir:self.strEmailBody withFileName:@"testEmail.html"];
+    
+}
+-(void)SaveHtmlFileInDocDir:(NSString *)strHtml withFileName:(NSString *)htmlFilename
+{
+    
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths objectAtIndex:0];
+    NSString *htmlPath = [documentsPath stringByAppendingPathComponent:htmlFilename];
+    [arrayFilePath addObject:htmlPath];
+    [strHtml writeToFile:htmlPath atomically:NO encoding:NSUTF8StringEncoding error:nil];
+    
+}
+-(void)RomoveFilesFromDocDir
+{
+    NSLog(@"arrayFilePath=%@",arrayFilePath);
+    for (int i=0; i<[arrayFilePath count]; i++) {
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        [fileManager removeItemAtPath:[arrayFilePath objectAtIndex:i]  error:NULL];
+    }
+    [arrayFilePath removeAllObjects];
+    
+}
 -(void)sendMailButtonClicked
 {	
+    [self getEmailBodyContent];
 	MFMailComposeViewController *controller = [MFMailComposeViewController new];
 	[controller setToRecipients:[NSArray arrayWithObjects:@"info@nowabout.co.uk",nil]];
 	[controller setMessageBody:@"" isHTML:NO];
 	[controller setMailComposeDelegate:self];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.dictDetails];
-    [controller addAttachmentData:data
-                         mimeType:@"application/octet-stream"  
-                         fileName:nil]; 
-	[self presentModalViewController:controller animated:YES];
+    NSData *recData = [NSData dataWithContentsOfFile:[arrayFilePath objectAtIndex:0]];
+    [controller addAttachmentData:recData mimeType:@"application/html" fileName:@"test.html"];	
+    [self presentModalViewController:controller animated:YES];
 	[controller release];
 	
 	
@@ -142,10 +176,11 @@
 		//[alertView show];
 		//[alertView release];
 	}
+    [self RomoveFilesFromDocDir];
 	[controller dismissModalViewControllerAnimated:YES];
 }
 
-
+#pragma mark-UITableView Delegates
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -180,7 +215,7 @@
     }
     
     NSArray *arrayNotesAndRate = [[self.dictDetails  objectForKey:[arrayRating  objectAtIndex:indexPath.section]]componentsSeparatedByString:@"T90T"];
-    NSLog(@"%@",arrayNotesAndRate);
+    NSLog(@"arrayNotesAndRate=%@",arrayNotesAndRate);
     
     [cell setLabelWithString:[NSString stringWithFormat:@"Rate : %@",[arrayNotesAndRate objectAtIndex:0]]
                     andNotes:[NSString stringWithFormat:@"%@",[arrayNotesAndRate objectAtIndex:1]]];
