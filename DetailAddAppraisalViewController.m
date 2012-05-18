@@ -33,7 +33,7 @@
  #define kWork @"Work"
  #define kRelationships @"Relationships"
  #define kOpportunities @"Opportunities"
-
+ 
  */
 - (void)didReceiveMemoryWarning
 {
@@ -52,7 +52,7 @@
 - (void)viewDidLoad
 {
     
-        
+    
     self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc]initWithTitle:@"Home"
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
@@ -62,15 +62,15 @@
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
                                                                           action:@selector(sendMailButtonClicked)];
-
-//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Info"
-//                                                   message:@"Please click on specfic cell to change employee rating and notes!!" 
-//                                                  delegate:self 
-//                                         cancelButtonTitle:@"OK" 
-//                                         otherButtonTitles:nil];
-//    [alert show];
-//    [alert release];
-//
+    
+    //    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Info"
+    //                                                   message:@"Please click on specfic cell to change employee rating and notes!!" 
+    //                                                  delegate:self 
+    //                                         cancelButtonTitle:@"OK" 
+    //                                         otherButtonTitles:nil];
+    //    [alert show];
+    //    [alert release];
+    //
     
     self.stringEmp = [self.dictDetails  objectForKey:kEmpName];
     self.objDatabase = [[DataBaseHandler  alloc] init];
@@ -80,7 +80,7 @@
     NSLog(@"%@",self.dictDetails);
     self.navigationItem.title = self.stringEmp;
     NSLog(@"%s",__PRETTY_FUNCTION__);
-
+    
     self.ratingview = [[RatingView  alloc] init]; 
     NSArray *bundle = [[NSBundle mainBundle] loadNibNamed:@"RatingView"
                                                     owner:self.ratingview 
@@ -109,14 +109,28 @@
 -(void)getEmailBodyContent
 {
     arrayFilePath=[[NSMutableArray alloc]init];
-    self.strEmailBody=[NSString stringWithFormat:@"<html><head></head><body><center><b>Sheehy Employee Radar <BR> Employee Name:%@ <BR>Organisation: %@<BR>Appraisal name:%@ <BR> Date completed:%@<BR></b></center><table align='center' border='0' cellspacing='30%%'><tr><th>Attribute</th><th>Score</th><th>Notes</th></tr>",self.stringEmp,strOrganisation,self.stringAppName,[NSDate date]];
+    NSMutableArray *arrayTableTitle=[[NSMutableArray alloc]initWithObjects:@"Attributes",@"Rating",@"Notes", nil];
+    self.strEmailBody=[NSString stringWithFormat:@"<html><head></head><body><center><b>Sheehy Employee Radar <BR> Employee Name:%@ <BR>Organisation: %@<BR>Appraisal name:%@ <BR> Date completed:%@<BR></b></center><BR><table  frame='box' align='center'  cellspacing='10%%' >",self.stringEmp,strOrganisation,self.stringAppName,[NSDate date]];
     NSMutableDictionary *dictEmail;
     dictEmail = [[NSMutableDictionary  alloc] initWithDictionary:[objDatabase  readacessDictFromDatabase:[NSString  stringWithFormat:@"SELECT * FROM EmployeeStar WHERE EmpName = '%@' AND AppraisalName = '%@'",self.stringEmp,self.stringAppName]]];
-    for(int i=0;i<[[dictEmail allKeys] count];i++)
+    for(int j=0;j<3;j++)
     {
-        self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<tr><td>%@</td><td>%@</td><td>%@</td><tr><td colspan='3'><hr size='1' color='black'/></td></tr></tr>",[arrayRating objectAtIndex:i],[dictEmail objectForKey:[arrayRating objectAtIndex:i]],@"Notes"]];
+        NSLog(@"j=%d",j);
+        self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<tr><th>%@</th>",[arrayTableTitle objectAtIndex:j]]];
+        for(int i=0;i<[[dictEmail allKeys] count];i++)
+        {
+            if(j==0)
+                self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<th>%@</th>",[arrayRating objectAtIndex:i]]];
+            else if(j==1)
+                self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<td>%@</td>",[dictEmail objectForKey:[arrayRating objectAtIndex:i]]]];
+            else if(j==2)
+                self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<td>%@</td>",@"Notes"]];
+            
+        }
+        self.strEmailBody=[self.strEmailBody stringByAppendingString:@"<tr><td colspan='13'><hr color='black' /></td></tr></tr>"];
     }
     self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"</table></body></html>"]];
+    NSLog(@"strEmailBody=%@",self.strEmailBody);
     [self SaveHtmlFileInDocDir:self.strEmailBody withFileName:@"testEmail.html"];
     
 }
@@ -228,18 +242,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-     NSArray *arrayNotesAndRate = [[self.dictDetails  objectForKey:[arrayRating  objectAtIndex:indexPath.section]]componentsSeparatedByString:@"T90T"];
+    NSArray *arrayNotesAndRate = [[self.dictDetails  objectForKey:[arrayRating  objectAtIndex:indexPath.section]]componentsSeparatedByString:@"T90T"];
     
     selectedIndex = indexPath.section;
     
     self.ratingview.labelTitle.text = [arrayRating  objectAtIndex:indexPath.section];
     [self.ratingview  setSlidervalue:[arrayNotesAndRate objectAtIndex:0]];
     self.ratingview.fieldNotes.text = [arrayNotesAndRate objectAtIndex:1]; 
-
+    
     self.tableRate.alpha = 0.5;
     self.tableRate.userInteractionEnabled = NO;
     self.ratingview.hidden = NO;
-   
+    
 }
 -(void)getdata
 {
@@ -257,7 +271,7 @@
     
     [self.ratingview.fieldNotes resignFirstResponder];
     
-//    NSLog(@"%d",[objDatabase executeTableQuery:[NSString  stringWithFormat:@"UPDATE EmployeeStar SET TaskClarity = '%@' WHERE EmpName = '%@'",self.ratingview.labelRateVal.text,[self.dictDetails  objectForKey:kEmpName]]]);
+    //    NSLog(@"%d",[objDatabase executeTableQuery:[NSString  stringWithFormat:@"UPDATE EmployeeStar SET TaskClarity = '%@' WHERE EmpName = '%@'",self.ratingview.labelRateVal.text,[self.dictDetails  objectForKey:kEmpName]]]);
     NSLog(@"%@",[NSString  stringWithFormat:@"UPDATE EmployeeStar SET %@ = '%@' WHERE EmpName = '%@'",[arrayRating  objectAtIndex:selectedIndex],[NSString stringWithFormat:@"%@T90T%@",self.ratingview.labelRateVal.text,notes],self.stringEmp]);
     
     BOOL deleteTable = [objDatabase executeTableQuery:[NSString  stringWithFormat:@"UPDATE EmployeeStar SET %@ = '%@' WHERE EmpName = '%@' AND AppraisalName = '%@'",[arrayRating  objectAtIndex:selectedIndex],[NSString stringWithFormat:@"%@T90T%@",self.ratingview.labelRateVal.text,notes],self.stringEmp,self.stringAppName]];
@@ -272,11 +286,11 @@
 -(void)removeView
 {
     [self.ratingview.fieldNotes resignFirstResponder];
-
+    
     self.tableRate.alpha = 1.0;
     self.tableRate.userInteractionEnabled = YES;
     self.ratingview.hidden = YES;
-
+    
 }
 
 
@@ -284,7 +298,7 @@
 - (void)viewDidUnload
 {
     
-       [super viewDidUnload];
+    [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
