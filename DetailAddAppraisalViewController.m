@@ -110,21 +110,23 @@
 {
     arrayFilePath=[[NSMutableArray alloc]init];
     NSMutableArray *arrayTableTitle=[[NSMutableArray alloc]initWithObjects:@"Attributes",@"Rating",@"Notes", nil];
-    self.strEmailBody=[NSString stringWithFormat:@"<html><head></head><body><center><b>Sheehy Employee Radar <BR> Employee Name:%@ <BR>Organisation: %@<BR>Appraisal name:%@ <BR> Date completed:%@<BR></b></center><BR><table  frame='box' align='center'  cellspacing='10%%' >",self.stringEmp,strOrganisation,self.stringAppName,[NSDate date]];
+    self.strEmailBody=[NSString stringWithFormat:@"<html><head></head><body><center><b>Sheehy Employee Radar <BR> Employee Name:%@ <BR>Organisation: %@<BR>Appraisal name:%@ <BR> Date completed:%@<BR></b></center><BR><table  frame='box' align='center'  cellspacing='10%%' border = '0' >",self.stringEmp,strOrganisation,self.stringAppName,[NSDate date]];
     NSMutableDictionary *dictEmail;
     dictEmail = [[NSMutableDictionary  alloc] initWithDictionary:[objDatabase  readacessDictFromDatabase:[NSString  stringWithFormat:@"SELECT * FROM EmployeeStar WHERE EmpName = '%@' AND AppraisalName = '%@'",self.stringEmp,self.stringAppName]]];
     for(int j=0;j<3;j++)
     {
         NSLog(@"j=%d",j);
-        self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<tr><th>%@</th>",[arrayTableTitle objectAtIndex:j]]];
+        self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<tr  align='center'><th>%@</th>",[arrayTableTitle objectAtIndex:j]]];
         for(int i=0;i<[[dictEmail allKeys] count];i++)
         {
+            NSArray *arrayNotesAndRate = [[self.dictDetails  objectForKey:[arrayRating  objectAtIndex:i]]componentsSeparatedByString:@"T90T"];
+            
             if(j==0)
                 self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<th>%@</th>",[arrayRating objectAtIndex:i]]];
             else if(j==1)
-                self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<td>%@</td>",[dictEmail objectForKey:[arrayRating objectAtIndex:i]]]];
+                self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<td>%@</td>",[arrayNotesAndRate objectAtIndex:0]]];
             else if(j==2)
-                self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<td>%@</td>",@"Notes"]];
+                self.strEmailBody=[self.strEmailBody stringByAppendingString:[NSString stringWithFormat:@"<td>%@</td>",[arrayNotesAndRate objectAtIndex:1]]];
             
         }
         self.strEmailBody=[self.strEmailBody stringByAppendingString:@"<tr><td colspan='13'><hr color='black' /></td></tr></tr>"];
@@ -270,12 +272,23 @@
         notes = @"N.A";
     
     [self.ratingview.fieldNotes resignFirstResponder];
-    
+    //
     //    NSLog(@"%d",[objDatabase executeTableQuery:[NSString  stringWithFormat:@"UPDATE EmployeeStar SET TaskClarity = '%@' WHERE EmpName = '%@'",self.ratingview.labelRateVal.text,[self.dictDetails  objectForKey:kEmpName]]]);
     NSLog(@"%@",[NSString  stringWithFormat:@"UPDATE EmployeeStar SET %@ = '%@' WHERE EmpName = '%@'",[arrayRating  objectAtIndex:selectedIndex],[NSString stringWithFormat:@"%@T90T%@",self.ratingview.labelRateVal.text,notes],self.stringEmp]);
     
     BOOL deleteTable = [objDatabase executeTableQuery:[NSString  stringWithFormat:@"UPDATE EmployeeStar SET %@ = '%@' WHERE EmpName = '%@' AND AppraisalName = '%@'",[arrayRating  objectAtIndex:selectedIndex],[NSString stringWithFormat:@"%@T90T%@",self.ratingview.labelRateVal.text,notes],self.stringEmp,self.stringAppName]];
+    
+      
+    
     NSLog(@"deleteTable=%d",deleteTable);
+    
+    
+    deleteTable = [objDatabase executeTableQuery:[NSString  stringWithFormat:@"UPDATE EmployeeStar SET %@ = '%@' WHERE EmpName = '%@' AND AppraisalName = '%@'",kisChecked,@"YES",self.stringEmp,self.stringAppName]];
+    
+    NSLog(@"deleteTable=%d",deleteTable);
+    
+
+    
     self.tableRate.alpha = 1.0;
     self.tableRate.userInteractionEnabled = YES;
     self.ratingview.hidden = YES;

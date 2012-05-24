@@ -28,7 +28,7 @@
 #define kWork @"Work"
 #define kRelationships @"Relationships"
 #define kOpportunities @"Opportunities"
-
+#define kisChecked @"isChecked"
 #define KsAppraisalName @"AppraisalName"
 
 #define LOGINTABLE @"Login"
@@ -41,6 +41,7 @@
 #define KsDate @"Date"
 
 #define ktAprtable @"APRTable"
+
 
 NSString *strName;
 NSString *strOrganisation;

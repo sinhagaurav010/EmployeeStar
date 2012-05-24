@@ -29,6 +29,11 @@
 
 #pragma mark - View lifecycle
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    if(self.arrayAddAppriasal)
+        [self loadDataFromDatabase];
+}
 - (void)viewDidLoad
 {
     viewAlpha = [[UIView alloc] initWithFrame:self.view.bounds];
@@ -182,7 +187,12 @@
     }
 	cell.textLabel.text = [[self.arrayAddAppriasal objectAtIndex:indexPath.row] objectForKey:kEmpName];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
-	cell.accessoryType = 1;
+    
+    if([[[self.arrayAddAppriasal objectAtIndex:indexPath.row] objectForKey:kisChecked] isEqualToString:@"YES"])
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    else
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
 	return cell;
 }
 
